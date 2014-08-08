@@ -1,0 +1,10 @@
+
+
+<!-- public/templates/restaurants/index.html -->
+
+<a href="/#">index </a>{{ locs }}||{{ colormap(.4).hex }}
+<ul >
+  <li ng-repeat="loc in locs" ng-controller='LocationItemCtrl'><a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
+  	<button ng-click="toggleFavorite(loc.id)" class="toggle"><span class="glyphicon glyphicon-heart"></span></button>
+<button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;</button></li>
+</ul>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @door.location_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @door.name %>
+</p>
+
+<p>
+  <strong>Flow from:</strong>
+  <%= @door.flow_from %>
+</p>
+
+<p>
+  <strong>Sensor:</strong>
+  <%= @door.sensor_id %>
+</p>
+
+<p>
+  <strong>Current state:</strong>
+  <%= @door.current_state %>
+</p>
+
+<p>
+  <strong>Flow to:</strong>
+  <%= @door.flow_to %>
+</p>
+
+<p>
+  <strong>Is external:</strong>
+  <%= @door.is_external %>
+</p>
+
+<%= link_to 'Edit', edit_door_path(@door) %> |
+<%= link_to 'Back', doors_path %>

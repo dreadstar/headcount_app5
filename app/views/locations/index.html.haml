@@ -1,0 +1,25 @@
+.page-title
+  %h1 Locations
+
+  = link_to 'New Location', new_location_path, class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Max Capacity
+      %th Current State
+      %th Actions
+
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.name
+        %td= location.max_cap
+        %td= location.current_state
+        %td
+          = link_to 'View', location_path(location)
+          |
+          = link_to 'Edit', edit_location_path(location)
+          |
+          = link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }

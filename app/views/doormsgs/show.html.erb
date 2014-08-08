@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Door:</strong>
+  <%= @doormsg.door_id %>
+</p>
+
+<p>
+  <strong>Tstamp:</strong>
+  <%= @doormsg.tstamp %>
+</p>
+
+<p>
+  <strong>Msg:</strong>
+  <%= @doormsg.msg %>
+</p>
+
+<p>
+  <strong>Sensor:</strong>
+  <%= @doormsg.sensor_id %>
+</p>
+
+<p>
+  <strong>Counter state:</strong>
+  <%= @doormsg.counter_state %>
+</p>
+
+<p>
+  <strong>Ip addr:</strong>
+  <%= @doormsg.ip_addr %>
+</p>
+
+<%= link_to 'Edit', edit_doormsg_path(@doormsg) %> |
+<%= link_to 'Back', doormsgs_path %>

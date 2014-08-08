@@ -1,0 +1,37 @@
+<h1>Listing doors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Name</th>
+      <th>Flow from</th>
+      <th>Sensor</th>
+      <th>Current state</th>
+      <th>Flow to</th>
+      <th>Is external</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doors.each do |door| %>
+      <tr>
+        <td><%= door.location_id %></td>
+        <td><%= door.name %></td>
+        <td><%= door.flow_from %></td>
+        <td><%= door.sensor_id %></td>
+        <td><%= door.current_state %></td>
+        <td><%= door.flow_to %></td>
+        <td><%= door.is_external %></td>
+        <td><%= link_to 'Show', door %></td>
+        <td><%= link_to 'Edit', edit_door_path(door) %></td>
+        <td><%= link_to 'Destroy', door, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Door', new_door_path %>

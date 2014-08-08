@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  door_id: 1
+  tstamp: 2014-08-06 15:41:05
+  msg: MyText
+  sensor_id: MyString
+  counter_state: 1
+  ip_addr: MyString
+
+two:
+  door_id: 1
+  tstamp: 2014-08-06 15:41:05
+  msg: MyText
+  sensor_id: MyString
+  counter_state: 1
+  ip_addr: MyString

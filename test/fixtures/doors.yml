@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 1
+  name: MyString
+  flow_from: 1
+  sensor_id: MyString
+  current_state: 1
+  flow_to: 1
+  is_external: false
+
+two:
+  location_id: 1
+  name: MyString
+  flow_from: 1
+  sensor_id: MyString
+  current_state: 1
+  flow_to: 1
+  is_external: false

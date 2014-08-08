@@ -1,0 +1,40 @@
+# app/assets/javascripts/angular/controllers/RestaurantIndexCtrl.js.coffee
+#= require chroma
+
+@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
+  $scope.locs = []
+  $scope.colors = ['black','blue','red']
+  $scope.search_ranges = [{val : 0, txt : '1 mile'},{val : 1, txt :'5 miles'},{val : 2, txt :'10 miles'},{val : 3, txt :'all'}]
+  $scope.colormap = chroma.scale($scope.colors).mode('lab').correctLightness false 
+  $scope.getcolor = (heat) ->
+    $scope.colormap(heat).hex()
+  $http.get('./locations.json').success((data) ->
+    $scope.locs = data.locations
+
+  )
+#  $scope.$on "getcolor",  (event, args) ->
+#  	$scope.colormap(args.heat).hex()
+  $scope.viewLocation = (id) ->
+    $location.url "/locations/#{id}"
+
+#this could be the place for other mfav link etc
+]
+
+###    
+  $scope.viewFavorites = ->
+	  $http.get('./locations/fav.json').success((data) ->
+	    $scope.locs = data
+	  )
+	$scope.viewPopular = ->
+	  $http.get('./locations/pop.json').success((data) ->
+	    $scope.locs = data
+	  )
+	$scope.viewHottest = ->
+	  $http.get('./locations/hot.json').success((data) ->
+	    $scope.locs = data
+	  )
+	$scope.viewCoolest = ->
+	  $http.get('./locations/cool.json').success((data) ->
+	    $scope.locs = data
+	  )
+###

@@ -1,0 +1,9 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "bootstrap": "latest",
+    "angular": "latest",
+    "chroma": "git@github.com:gka/chroma.js.git",
+    "angular-sockjs": "latest"
+  }
+}

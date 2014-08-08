@@ -1,0 +1,41 @@
+<%= form_for(@doormsg) do |f| %>
+  <% if @doormsg.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doormsg.errors.count, "error") %> prohibited this doormsg from being saved:</h2>
+
+      <ul>
+      <% @doormsg.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :door_id %><br>
+    <%= f.number_field :door_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tstamp %><br>
+    <%= f.datetime_select :tstamp %>
+  </div>
+  <div class="field">
+    <%= f.label :msg %><br>
+    <%= f.text_area :msg %>
+  </div>
+  <div class="field">
+    <%= f.label :sensor_id %><br>
+    <%= f.text_field :sensor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :counter_state %><br>
+    <%= f.number_field :counter_state %>
+  </div>
+  <div class="field">
+    <%= f.label :ip_addr %><br>
+    <%= f.text_field :ip_addr %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

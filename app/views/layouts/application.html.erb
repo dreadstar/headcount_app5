@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="headcount" controller="HomeCtrl">
+<!-- data-framework="emberjs"  -->
+	<head>
+	  <title>HeadcountApp</title>
+	 <%= if current_page?('/') then 
+  	    javascript_include_tag 'application', 'data-turbolinks-track' => true
+  	  end %>
+	 
+
+	 <%= stylesheet_link_tag("application") %>
+	 <%= stylesheet_link_tag("custom") %>
+	 <%= stylesheet_link_tag("base") %>
+	  <%= csrf_meta_tags %>
+	</head> 
+	<body>
+		
+	  <%= render 'layouts/header' %>
+	  <div class="container">
+	    <%= render 'layouts/messages' %>
+	    <div ng-view>
+  			<%= yield %>
+			</div>
+	    <%= render 'layouts/footer' %>
+	  </div>
+	</body>
+</html>

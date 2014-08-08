@@ -1,0 +1,86 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @location.name
+%p
+  %strong Site Url:
+  = @location.site_url
+%p
+  %strong Yelp Url:
+  = @location.yelp_url 
+%p
+  %strong Capcity:
+  = @location.max_cap
+%p
+  %strong Current State:
+  = @location.current_state
+%p
+  %strong Is Active:
+  = @location.is_active
+
+%br
+= link_to 'Back to Locations', locations_path
+%br
+
+.page-title
+  %h2 Doors
+
+  = form_tag("/admin/locations/#{@location.id}/doors/new", method: 'get', id: 'new-action', class: 'form-inline') do
+    = submit_tag 'Add New Door', class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th From
+      %th To
+      %th current_state
+      %th 
+
+  %tbody
+    - @doors.each do |door|
+      %tr
+        %td= door.name
+        %td
+          - if door.is_external || door.flow_from.nil?
+            Outside
+          - else 
+            =Room.find(door.flow_from).name
+        %td  
+          - if door.flow_to.nil?
+            Not Set
+          - else
+            =Room.find(door.flow_to).name
+        %td= door.current_state
+        %td
+          = link_to 'View', location_door_path(@location, door)
+          |
+          = link_to 'Edit', edit_location_door_path(@location, door)
+          |
+          = link_to 'Destroy', location_door_path(@location, door), method: :delete, data: { confirm: 'Are you sure?' }
+
+.page-title
+  %h2 Rooms
+
+  = form_tag("/admin/locations/#{@location.id}/rooms/new", method: 'get', id: 'new-action', class: 'form-inline') do
+    = submit_tag 'Add New Room', class: 'btn btn-primary'
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Max Occupancy
+      %th current_state
+      %th 
+
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.name
+        %td= room.max_cap
+        %td= room.current_state
+        %td
+          = link_to 'View', location_room_path(@location, room)
+          |
+          = link_to 'Edit', edit_location_room_path(@location, room)
+          |
+          = link_to 'Destroy', location_room_path(@location, room), method: :delete, data: { confirm: 'Are you sure?' }

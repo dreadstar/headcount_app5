@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @location.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+</p>
+
+<p>
+  <strong>Max cap:</strong>
+  <%= @location.max_cap %>
+</p>
+
+<p>
+  <strong>Yelp url:</strong>
+  <%= @location.yelp_url %>
+</p>
+
+<p>
+  <strong>Site url:</strong>
+  <%= @location.site_url %>
+</p>
+
+<p>
+  <strong>Current state:</strong>
+  <%= @location.current_state %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @location.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

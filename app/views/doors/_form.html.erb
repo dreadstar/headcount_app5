@@ -1,0 +1,45 @@
+<%= form_for(@door) do |f| %>
+  <% if @door.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@door.errors.count, "error") %> prohibited this door from being saved:</h2>
+
+      <ul>
+      <% @door.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :location_id %><br>
+    <%= f.number_field :location_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :flow_from %><br>
+    <%= f.number_field :flow_from %>
+  </div>
+  <div class="field">
+    <%= f.label :sensor_id %><br>
+    <%= f.text_field :sensor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :current_state %><br>
+    <%= f.number_field :current_state %>
+  </div>
+  <div class="field">
+    <%= f.label :flow_to %><br>
+    <%= f.number_field :flow_to %>
+  </div>
+  <div class="field">
+    <%= f.label :is_external %><br>
+    <%= f.check_box :is_external %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+%p
+  %strong Location:
+  = @location.name
+
+= form_for([@location, @door]) do |f|
+  - if @door.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@door.errors.count, "error")
+        prohibited this item from being saved:
+      %ul
+        - @door.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :current_state
+    %br/
+    = f.text_field :current_state
+  .field
+    = f.label :sensor_id
+    %br/
+    = f.text_field :sensor_id
+  .field
+    = f.label :is_external
+    %br/
+    = f.check_box :is_external
+  .field
+    = f.label :flow_from
+    %br/
+    = f.collection_select( :flow_from, @location.rooms, :id, :name)
+  .field
+    = f.label :flow_to
+    %br/
+    = f.collection_select(:flow_to, @location.rooms, :id, :name)
+
+  .actions
+    = f.submit
