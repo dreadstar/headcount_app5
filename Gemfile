@@ -48,4 +48,8 @@ gem 'haml-rails', '>= 0.3.4', :group => :development
 gem 'active_model_serializers'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'bunny'
+gem 'realtime'
+gem 'redis'
+gem 'foreman'
 

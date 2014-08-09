@@ -4,6 +4,7 @@
     "bootstrap": "latest",
     "angular": "latest",
     "chroma": "git@github.com:gka/chroma.js.git",
-    "angular-sockjs": "latest"
+    "angular-sockjs": "latest",
+    "socket.io": "latest"
   }
 }
