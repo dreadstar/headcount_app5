@@ -14,8 +14,8 @@
   )
 #  $scope.$on "getcolor",  (event, args) ->
 #  	$scope.colormap(args.heat).hex()
-  $scope.viewLocation = (id) ->
-    $location.url "/locations/#{id}"
+#  $scope.viewLocation = (id) ->
+#    $location.url "/locations/#{id}"
 
 #this could be the place for other mfav link etc
 ]

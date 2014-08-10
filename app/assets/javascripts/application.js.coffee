@@ -8,8 +8,12 @@
 #= require bootstrap-sprockets
 #= require angular
 #= require angular-route
-#= require main
+# require socket.io
+
 #= require_tree ./angular
+# require angular-socket-io
+# require angular-socket-io/socket
+#= require main
 
 # for more details see: http://emberjs.com/guides/application/
 
