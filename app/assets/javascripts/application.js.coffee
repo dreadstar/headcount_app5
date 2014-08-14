@@ -9,11 +9,11 @@
 #= require angular
 #= require angular-route
 # require socket.io
-
+#= require main
 #= require_tree ./angular
 # require angular-socket-io
 # require angular-socket-io/socket
-#= require main
+
 
 # for more details see: http://emberjs.com/guides/application/
 
