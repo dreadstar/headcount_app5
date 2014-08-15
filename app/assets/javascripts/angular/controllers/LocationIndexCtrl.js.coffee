@@ -1,8 +1,10 @@
 # app/assets/javascripts/angular/controllers/RestaurantIndexCtrl.js.coffee
 #= require chroma
 
+# @headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http','socket', ($scope, $location, $http, socket) ->
 @headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
   $scope.locs = []
+  # intimate,cool, hot
   $scope.colors = ['black','blue','red']
   $scope.search_ranges = [{val : 0, txt : '1 mile'},{val : 1, txt :'5 miles'},{val : 2, txt :'10 miles'},{val : 3, txt :'all'}]
   $scope.colormap = chroma.scale($scope.colors).mode('lab').correctLightness false 
@@ -10,8 +12,10 @@
     $scope.colormap(heat).hex()
   $http.get('./locations.json').success((data) ->
     $scope.locs = data.locations
-
   )
+  #socket.on('change:name',  (data) ->
+  #  $scope.locs[data.id].current_state= data.current_state
+  #)
 #  $scope.$on "getcolor",  (event, args) ->
 #  	$scope.colormap(args.heat).hex()
 #  $scope.viewLocation = (id) ->

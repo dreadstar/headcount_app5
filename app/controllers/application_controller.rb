@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   def realtime_server_url
     if Rails.env.development?
-      return 'http://l127.0.0.1:5001'
+      return 'http://localhost:5001'
       # return 'http://local.mikeatlas.com:5001'
     end
     return 'http://realtime-server-demo.herokuapp.com'

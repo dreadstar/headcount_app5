@@ -3,11 +3,13 @@
 <!-- data-framework="emberjs"  -->
 	<head>
 	  <title>HeadcountApp</title>
-	 <%= if current_page?('/') then 
+	  <%= realtime_support %>
+	 <%= if !current_page?('/admin') then 
   	    javascript_include_tag 'application', 'data-turbolinks-track' => true
   	  end %>
 	 
-   <%= realtime_support %>
+   <%= # realtime_support 
+   %>
 	 <%= stylesheet_link_tag("application") %>
 	 <%= stylesheet_link_tag("custom") %>
 	 <%= stylesheet_link_tag("base") %>

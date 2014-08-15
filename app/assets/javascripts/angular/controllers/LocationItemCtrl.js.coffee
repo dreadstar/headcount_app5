@@ -16,21 +16,3 @@
 #this could be the place for other mfav link etc
 ]
 
-###    
-  $scope.viewFavorites = ->
-	  $http.get('./locations/fav.json').success((data) ->
-	    $scope.locs = data
-	  )
-	$scope.viewPopular = ->
-	  $http.get('./locations/pop.json').success((data) ->
-	    $scope.locs = data
-	  )
-	$scope.viewHottest = ->
-	  $http.get('./locations/hot.json').success((data) ->
-	    $scope.locs = data
-	  )
-	$scope.viewCoolest = ->
-	  $http.get('./locations/cool.json').success((data) ->
-	    $scope.locs = data
-	  )
-###
