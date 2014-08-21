@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protected
 
-  # code added for realimte integration
+  # code added for realtime integration
   realtime_controller
   def realtime_user_id
     return !user_signed_in? ? 42 : current_user.user_id
