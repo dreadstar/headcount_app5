@@ -11,7 +11,7 @@
 
 #= require angular-socket-io
 #= require angular-socket-io/socket
-#= require socket.io/
+# require socket.io/
 #= require main
 # require services
 #= require_tree ./angular

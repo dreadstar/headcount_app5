@@ -1,21 +1,25 @@
 # app/assets/javascripts/angular/controllers/RestaurantIndexCtrl.js.coffee
 #= require chroma
 
-# @headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http','socket', ($scope, $location, $http, socket) ->
-@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
+@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http','socket', ($scope, $location, $http, socket) ->
+#@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
   $scope.locs = []
   # intimate,cool, hot
   $scope.colors = ['black','blue','red']
+  # results radius
   $scope.search_ranges = [{val : 0, txt : '1 mile'},{val : 1, txt :'5 miles'},{val : 2, txt :'10 miles'},{val : 3, txt :'all'}]
+  # colormap for heat
   $scope.colormap = chroma.scale($scope.colors).mode('lab').correctLightness false 
   $scope.getcolor = (heat) ->
     $scope.colormap(heat).hex()
   $http.get('./locations.json').success((data) ->
     $scope.locs = data.locations
   )
-  #socket.on('change:name',  (data) ->
-  #  $scope.locs[data.id].current_state= data.current_state
-  #)
+  # the code to process an update notification
+  socket.on('change:location',  (data) ->
+    $scope.locs[data.id].current_state= data.current_state
+    $scope.locs[data.id].fanscnt= data.fanscnt
+  )
 #  $scope.$on "getcolor",  (event, args) ->
 #  	$scope.colormap(args.heat).hex()
 #  $scope.viewLocation = (id) ->

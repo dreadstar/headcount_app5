@@ -5,6 +5,7 @@
 	  <title>HeadcountApp</title>
 	  <%= realtime_support %>
 	 <%= if !current_page?('/admin') then 
+	 			javascript_include_tag 'https://cdn.socket.io/socket.io-1.0.6.js', 'data-turbolinks-track' => false
   	    javascript_include_tag 'application', 'data-turbolinks-track' => true
   	  end %>
 	 

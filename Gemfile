@@ -52,4 +52,5 @@ gem 'bunny'
 gem 'realtime'
 gem 'redis'
 gem 'foreman'
+gem 'browserify-rails'
 

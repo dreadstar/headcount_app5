@@ -43,6 +43,8 @@ GEM
       sass (~> 3.2)
     bower (0.0.2)
     bower-rails (0.8.3)
+    browserify-rails (0.4.1)
+      sprockets (~> 2.0)
     builder (3.2.2)
     bunny (1.4.0)
       amq-protocol (>= 1.9.2)
@@ -177,6 +179,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   bower
   bower-rails (~> 0.8.2)
+  browserify-rails
   bunny
   coffee-rails (~> 4.0.0)
   devise
