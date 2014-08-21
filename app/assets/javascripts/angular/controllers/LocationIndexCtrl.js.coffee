@@ -8,6 +8,7 @@
   $scope.colors = ['black','blue','red']
   # results radius
   $scope.search_ranges = [{val : 0, txt : '1 mile'},{val : 1, txt :'5 miles'},{val : 2, txt :'10 miles'},{val : 3, txt :'all'}]
+  $scope.myRange = $scope.search_ranges[3]
   # colormap for heat
   $scope.colormap = chroma.scale($scope.colors).mode('lab').correctLightness false 
   $scope.getcolor = (heat) ->

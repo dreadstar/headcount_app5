@@ -2,7 +2,11 @@
 
 <!-- public/templates/restaurants/index.html -->
 
-<a href="/#">index </a>{{ locs }}
+<a href="/#">index </a>
+<select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
+      <option value="">-- choose range --</option>
+    </select>
+{{ locs }}
 <ul >
   <li ng-repeat="loc in locs" ng-controller='LocationItemCtrl'><a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
   	<button ng-click="toggleFavorite(loc.id)" class="toggle">
