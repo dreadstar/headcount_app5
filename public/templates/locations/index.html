@@ -6,7 +6,7 @@
 <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
       <option value="">-- choose range --</option>
     </select>
-{{ locs }}
+<!-- {{ locs }} -->
 <ul >
   <li ng-repeat="loc in locs" ng-controller='LocationItemCtrl'><a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
   	<button ng-click="toggleFavorite(loc.id)" class="toggle">
