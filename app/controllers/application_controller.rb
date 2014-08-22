@@ -7,15 +7,15 @@ class ApplicationController < ActionController::Base
   # code added for realtime integration
   realtime_controller
   def realtime_user_id
-    return !user_signed_in? ? 42 : current_user.user_id
+    # return !user_signed_in? ? 42 : current_user.user_id
+    return 42
   end
   def realtime_server_url
     if Rails.env.development?
       return 'http://localhost:5001'
-      # return 'http://local.mikeatlas.com:5001'
-    end
-    return 'http://realtime-server-demo.herokuapp.com'
+    end 
   end
+
 
   def after_sign_in_path_for(resource)
     # return the path based on resource

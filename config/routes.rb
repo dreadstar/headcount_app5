@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'admin/index'
-  get 'admin', to: 'admin#index'
-  devise_for :admins
+  # get 'admin', to: 'admin#index'
+  
   devise_for :users
+  devise_for :admins
   # resources :doormsgs
 
   # resources :rooms
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   end
   resources :locations, only: [ :index, :show]
     # , format: true
-  resources :todos
+  # resources :todos
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
