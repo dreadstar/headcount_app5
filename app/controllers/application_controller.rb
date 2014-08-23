@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
   def realtime_server_url
     if Rails.env.development?
-      return 'http://localhost:5001'
+      # return 'http://localhost:5001'
+      return 'http://192.168.1.2:5001'
     end 
   end
 

@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     resources :admins
   end
   resources :locations, only: [ :index, :show]
+  scope "/api", defaults: {format: :json} do
+    resources :doormsgs, only: [:index, :create]
+  end
     # , format: true
   # resources :todos
   # The priority is based upon order of creation: first created -> highest priority.
