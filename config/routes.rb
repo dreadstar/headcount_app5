@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   devise_for :users
   devise_for :admins
+  
   # resources :doormsgs
 
   # resources :rooms
@@ -15,10 +16,10 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   devise_scope :user do
-    get '/users/sign_in'
-    get '/users/sign_out',to: 'users/sessions#destroy'
+    get '/users/sign_in',to: 'devise/sessions#new'
+    get '/users/sign_out',to: 'devise/sessions#destroy'
   end
-  devise_scope :admin do
+  devise_scope :admins do
     # @request.env["devise.mapping"] = Devise.mappings[:admin] 
     get '/admins/sign_in'
     # get '/admins/sign_out',to: 'devise/sessions#destroy'
@@ -35,8 +36,8 @@ Rails.application.routes.draw do
       end
       resources :rooms, only: [:new,:show, :edit, :create, :update]
     end
-    resources :users
-    resources :admins
+    # resources :users
+    # resources :admins
   end
   resources :locations, only: [ :index, :show]
   scope "/api", defaults: {format: :json} do

@@ -1,0 +1,29 @@
+<ul class="nav pull-right">
+  <li><%= link_to "Home",         root_path %></li>
+  <li><%= link_to "Admin Sign in",        new_admin_session_path %></li>
+  <li><%= link_to "Admin Sign up", new_admin_registration_path %></li>
+  <% if admin_signed_in? %>
+    <li> <%= link_to " Admin Logout", destroy_admin_session_path, :method => :delete %></li>
+  <% else %>
+   <li><%= link_to "Admin registration",        new_admin_registration_path %></li>
+  <% end %>
+  <% if user_signed_in? %>
+    <li id="fat-menu" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Account <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Profile", edit_user_registration_path %></li>
+        <li><%= link_to "Settings", '#' %></li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+        </li>
+      </ul>
+    </li>
+    <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+    <li><%= link_to "Sign in", new_user_session_path %><% if user_signed_in? %> logged in <% end %></li>
+    <li><%= link_to "Sign up", new_user_registration_path %></li>
+  <% end %>
+</ul>

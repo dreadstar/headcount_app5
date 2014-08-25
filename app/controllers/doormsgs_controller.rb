@@ -1,4 +1,5 @@
 class DoormsgsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_doormsg, only: [:show, :edit, :update, :destroy]
 
   # GET /doormsgs
@@ -69,6 +70,7 @@ class DoormsgsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doormsg_params
+      # params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
       params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
     end
 end
