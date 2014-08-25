@@ -36,8 +36,8 @@ Rails.application.routes.draw do
       end
       resources :rooms, only: [:new,:show, :edit, :create, :update]
     end
-    # resources :users
-    # resources :admins
+     resources :users
+     resources :admins
   end
   resources :locations, only: [ :index, :show]
   scope "/api", defaults: {format: :json} do
