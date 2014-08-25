@@ -22,7 +22,7 @@ class Location < ActiveRecord::Base
     logger.debug "message hash: #{obj.inspect}"
 		logger.info "redis messaging"
     # $redis.publish 'realtime_msg', msg.to_json
-    $redis.publish 'realtime_msg', obj.to_json
+    $redis.publish 'rt-locations', obj.to_json
   end
 
 

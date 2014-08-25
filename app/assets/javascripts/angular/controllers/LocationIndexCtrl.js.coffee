@@ -17,9 +17,10 @@
     $scope.locs = data.locations
   )
   # the code to process an update notification
-  socket.on('update:locations',  (data) ->
-    $scope.locs[data.id].current_state= data.current_state
-    $scope.locs[data.id].fanscnt= data.fanscnt
+  socket.on('rt-locations',  (data) ->
+    $scope.locs[data.msg.obj.id].current_state= data.msg.obj.current_state
+    $scope.locs[data.msg.obj.id].fanscnt= data.msg.obj.fanscnt
+    console.log data 
   )
 #  $scope.$on "getcolor",  (event, args) ->
 #  	$scope.colormap(args.heat).hex()
