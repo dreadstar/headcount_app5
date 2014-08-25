@@ -27,4 +27,5 @@ class LocationSerializer < ActiveModel::Serializer
   # has_many :doors
   # has_many :user_location_favs
   # has_many :users
+  
 end
