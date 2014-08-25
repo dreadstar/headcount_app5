@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protected
 
+  def set_realtime_user_id
+    #  set @current_account from session data here
+    Location.realtime_user_id = realtime_user_id
+  end
+
   # code added for realtime integration
   realtime_controller
   def realtime_user_id

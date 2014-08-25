@@ -33,7 +33,8 @@
 ###
 `headcount.factory('socket', function ($rootScope) {
   // var socket = io.connect();
-	var socket = io.connect("http://localhost:5001");
+	// var socket = io.connect("http://localhost:5001");
+	var socket = window.realtime.socketIo;
 	return {
 		on: function (eventName, callback) {
 			socket.on(eventName, function () {

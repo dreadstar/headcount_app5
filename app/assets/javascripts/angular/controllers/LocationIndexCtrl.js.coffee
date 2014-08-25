@@ -17,7 +17,7 @@
     $scope.locs = data.locations
   )
   # the code to process an update notification
-  socket.on('change:location',  (data) ->
+  socket.on('update:locations',  (data) ->
     $scope.locs[data.id].current_state= data.current_state
     $scope.locs[data.id].fanscnt= data.fanscnt
   )
