@@ -7,6 +7,6 @@ class Door < ActiveRecord::Base
 		new_current_state=doormsg.counter_state + self.current_state
 		self.update_attributes(:current_state => new_current_state)
 		logger.debug "door hash: #{self.inspect}"
-		logger.info "update_conter"
+		logger.info "door update_counter"
 	end
 end
