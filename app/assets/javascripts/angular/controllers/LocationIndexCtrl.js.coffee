@@ -25,16 +25,16 @@
     $scope.locs[data.msg.obj.id].fanscnt= data.msg.obj.fanscnt
     console.log data 
   )
-  window.realtime.socketIo.on('realtime_msg', (data)->
-    console.log data 
-    console.log $scope.locs 
-    $scope.locs[$scope.locsindex[data.msg.obj.id]].current_state= data.msg.obj.current_state
-    $scope.locs[$scope.locsindex[data.msg.obj.id]].fanscnt= data.msg.obj.fanscnt
-    console.log 'index array value'+$scope.locsindex[data.msg.obj.id] 
-    console.log 'upaded array'
-    console.log $scope.locs 
-    $rootScope.$apply()
-	)
+  # window.realtime.socketIo.on('realtime_msg', (data)->
+  #  console.log data 
+  #  console.log $scope.locs 
+  #  $scope.locs[$scope.locsindex[data.msg.obj.id]].current_state= data.msg.obj.current_state
+  #  $scope.locs[$scope.locsindex[data.msg.obj.id]].fanscnt= data.msg.obj.fanscnt
+  #  console.log 'index array value'+$scope.locsindex[data.msg.obj.id] 
+  #  console.log 'upaded array'
+  #  console.log $scope.locs 
+  #  $rootScope.$apply()
+	# )
 #  $scope.$on "getcolor",  (event, args) ->
 #  	$scope.colormap(args.heat).hex()
 #  $scope.viewLocation = (id) ->
