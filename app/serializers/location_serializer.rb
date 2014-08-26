@@ -5,6 +5,7 @@ class LocationSerializer < ActiveModel::Serializer
 #  end
   def fanscnt
   	object.users.size
+
   end
   def current_state
  	  if !object.current_state?
@@ -27,5 +28,5 @@ class LocationSerializer < ActiveModel::Serializer
   # has_many :doors
   # has_many :user_location_favs
   # has_many :users
-  
+
 end
