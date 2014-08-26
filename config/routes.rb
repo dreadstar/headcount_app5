@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
   resources :locations, only: [ :index, :show]
   scope "/api", defaults: {format: :json} do
-    resources :doormsgs, only: [:index, :create]
+    resources :doormsgs, only: [:index, :create, :show]
   end
     # , format: true
   # resources :todos

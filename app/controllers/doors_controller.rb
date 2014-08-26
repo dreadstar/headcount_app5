@@ -38,7 +38,7 @@ class DoorsController < ApplicationController
   private
 
   def doors_params
-    params.require(:door).permit( :name, :is_external, :flow_to, :flow_from, :sensor_id)
+    params.require(:door).permit( :name, :is_external, :flow_to, :flow_from, :sensor_id, :current_state)
     # need to add sensor_id and cusotmize model has many for vusomt sql
   end
 
