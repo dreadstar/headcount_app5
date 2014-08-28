@@ -30,11 +30,11 @@
   .field
     = f.label :flow_from
     %br/
-    = f.collection_select( :flow_from, @location.rooms, :id, :name, prompt: true)
+    = f.collection_select( :flow_from, @location.rooms, :id, :name,  {include_blank: 'None'})
   .field
     = f.label :flow_to
     %br/
-    = f.collection_select(:flow_to, @location.rooms, :id, :name, prompt: true)
+    = f.collection_select(:flow_to, @location.rooms, :id, :name, {include_blank: 'None'})
 
   .actions
     = f.submit
