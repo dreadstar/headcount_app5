@@ -1,15 +1,23 @@
 class Location < ActiveRecord::Base
 	cattr_accessor :realtime_user_id
 	has_many :rooms
-	has_many :doors, after_add: :update_counter
+	has_many :doors # , after_add: :update_counter
 	has_many :user_location_favs
 	has_many :users, through: :user_location_favs 
 
 	after_create {|location| location.message 'create' }
   after_update {|location| location.message 'update' }
   after_destroy {|location| location.message 'destroy' }
-	def update_counter(door)
-		new_current_state=doormsg.current_state + self.current_state
+  after_commit {|location| location.message 'update' }
+
+	def update_state
+		# sum of all doo
+		new_current_state=0
+		self.doors.each do |door|
+			if door.is_external? 
+				new_current_state=new_current_state + door.current_state
+			end
+		end
 		self.update_attributes(:current_state => new_current_state)
 		logger.debug "location hash: #{self.inspect}"
 		logger.info "location update_counter"

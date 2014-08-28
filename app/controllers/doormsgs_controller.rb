@@ -73,4 +73,7 @@ class DoormsgsController < ApplicationController
       # params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
       params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
     end
+    def find_door
+    @door ||= Door.find(:conditions => [ "sensor_id = ?", params[:sensor_id]])
+  end
 end

@@ -4,11 +4,11 @@
 	<head>
 	  <title>HeadcountApp</title>
 
-	  <%#  realtime_code %>
+	 	<% if current_page?('/welcome/index') or current_page?('/') %>
 	  <%=  realtime_support %>
 		<%=  realtime_message_handler %>
     <%=  realtime_message_console_logger %>
-	  
+	  <% end %>
 	 <%= if current_page?('/welcome/index') or current_page?('/') then 
 	 			
   	  javascript_include_tag 'application', 'data-turbolinks-track' => true
