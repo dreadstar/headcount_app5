@@ -31,10 +31,10 @@ Rails.application.routes.draw do
 #     # (app/controllers/admin/products_controller.rb)
 #     resources :products
     resources :locations do
-      resources :doors, only: [:new, :show, :edit, :create, :update] do
-        resources :doormsgs, only: [:index, :show]
+      resources :doors, only: [:new, :show, :edit, :create, :update, :destroy] do
+        resources :doormsgs, only: [:index, :show, :destroy]
       end
-      resources :rooms, only: [:new,:show, :edit, :create, :update]
+      resources :rooms, only: [:new,:show, :edit, :create, :update, :destroy]
     end
      resources :users
      resources :admins

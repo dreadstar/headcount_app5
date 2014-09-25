@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
   before_action :find_location, except: [:index, :show]
   before_action :find_room, only: [ :update, :destroy]
 
+  def show
+    @room = Room.find(params[:id])
+  end
+
   def new
     @room = Room.new
   end

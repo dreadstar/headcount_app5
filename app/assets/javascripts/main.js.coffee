@@ -34,9 +34,5 @@
     when('/locations/:id', {
       templateUrl: '../templates/locations/show.html',
       controller: 'LocationShowCtrl'
-    }).
-    otherwise({
-      templateUrl: '../templates/home.html',
-      controller: 'HomeCtrl'
-    }) 
+    })
 ])

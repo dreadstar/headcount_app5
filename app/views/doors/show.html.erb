@@ -2,7 +2,7 @@
 
 <p>
   <strong>Location:</strong>
-  <%= @door.location_id %>
+  <%= @location.name %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Flow to:</strong>
-  <%= @door.flow_to %>
+  <%= @room_in.name %>
 </p>
 
 <p>
@@ -35,5 +35,5 @@
   <%= @door.is_external %>
 </p>
 
-<%= link_to 'Edit', edit_door_path(@door) %> |
-<%= link_to 'Back', doors_path %>
+<%# link_to 'Edit', edit_door_path(@door) %> |
+<%= link_to 'Back', location_path(@door.location_id) %>

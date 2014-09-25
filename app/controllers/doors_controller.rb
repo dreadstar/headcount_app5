@@ -1,6 +1,14 @@
 class DoorsController < ApplicationController
-	before_action :find_location, only: [:new, :edit, :create, :update, :destroy]	
+	before_action :find_location, only: [:new, :edit, :create, :update, :destroy, :show]	
   before_action :find_door, only: [:update, :destroy]
+
+  def show
+    @door = Door.find(params[:id])
+    @room_in= Room.find(@door.flow_to)
+    if !@door.is_external then
+      @room_out= Room.find(@door.flow_from)
+    end
+  end
 
   def new
     @door = Door.new
@@ -49,5 +57,11 @@ class DoorsController < ApplicationController
 
   def find_location
     @location ||= Location.find(params[:location_id])
+  end
+  def find_room_in
+    @room_in ||= Room.find(params[:flow_to])
+  end
+  def find_room_out
+    @room_out ||= Room.find(params[:flow_from])
   end
 end
