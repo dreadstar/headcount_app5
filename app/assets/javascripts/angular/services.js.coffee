@@ -55,4 +55,9 @@
 			})
 		}
 	};
-});`
+}).factory('UserFavorite', function($resource){          
+    return $resource('/api/user_location_favs/:id',{id:'@id'}, {});
+                
+  }
+
+);`

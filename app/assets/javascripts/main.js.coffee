@@ -3,7 +3,7 @@
 # This line is related to our Angular app, not to our
 # HomeCtrl specifically. This is basically how we tell
 # Angular about the existence of our application.
-@headcount = angular.module('headcount', ['ngRoute','btford.socket-io'])
+@headcount = angular.module('headcount', ['ngRoute','ngResource','btford.socket-io'])
 
 
 ### 
@@ -36,3 +36,8 @@
       controller: 'LocationShowCtrl'
     })
 ])
+###
+@headcount.config(['$resourceProvider',  ($resourceProvider) ->
+  $resourceProvider.defaults.stripTrailingSlashes = false
+])
+###

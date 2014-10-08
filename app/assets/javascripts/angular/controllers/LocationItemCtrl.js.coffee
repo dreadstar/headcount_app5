@@ -1,9 +1,11 @@
-# app/assets/javascripts/angular/controllers/RestaurantIndexCtrl.js.coffee
+# app/assets/javascripts/angular/controllers/RestaurantItemCtrl.js.coffee
 #= require chroma
 
-@headcount.controller 'LocationItemCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
+@headcount.controller 'LocationItemCtrl', ['$scope', '$location', '$http', 'UserFavorite', ($scope, $location, $http, UserFavorite) ->
 
-  $scope.heat = $scope.loc.current_state/$scope.loc.max_cap 
+  $scope.heat = $scope.loc.current_state/$scope.loc.max_cap
+  # UserFav = $resource('/api/user_location_favs/:id',{id:'@id'}, {})
+  
 
   $scope.heatcolor = $scope.$parent.getcolor $scope.heat
   #eventually add check to make sure heat < 1 or make 1 

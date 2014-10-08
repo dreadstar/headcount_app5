@@ -1,0 +1,35 @@
+<h1>Listing doormsgs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Door</th>
+      <th>Tstamp</th>
+      <th>Msg</th>
+      <th>Sensor</th>
+      <th>Counter state</th>
+      <th>Ip addr</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doormsgs.each do |doormsg| %>
+      <tr>
+        <td><%= doormsg.door_id %></td>
+        <td><%= doormsg.tstamp %></td>
+        <td><%= doormsg.msg %></td>
+        <td><%= doormsg.sensor_id %></td>
+        <td><%= doormsg.counter_state %></td>
+        <td><%= doormsg.ip_addr %></td>
+        <td><%= link_to 'Show', doormsg %></td>
+        <td><%= link_to 'Edit', edit_doormsg_path(doormsg) %></td>
+        <td><%= link_to 'Destroy', doormsg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Doormsg', new_doormsg_path %>

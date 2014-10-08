@@ -1,7 +1,7 @@
 # app/assets/javascripts/angular/controllers/RestaurantIndexCtrl.js.coffee
 #= require chroma
 
-@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http','socket', ($scope, $location, $http, socket) ->
+@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http','socket','UserFavorite', ($scope, $location, $http, socket,UserFavorite) ->
 #@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
   $scope.locs = []
   $scope.locsindex = []
@@ -17,8 +17,16 @@
   $http.get('./locations.json').success((data) ->
     $scope.locs = data.locations
     $scope.locsindex[$scope.locs[i].id]= i for loc, i in $scope.locs
+    console.log $scope.locs 
     console.log $scope.locsindex 
   )
+
+  # handler for add remove favorites
+  $scope.toggleFavorite = (id) ->
+			fav = new UserFavorite()
+			fav.location_id= id 
+			console.log fav
+			fav.$save()
   # the code to process an update notification
   socket.on('rt-locations',  (data) ->
     $scope.locs[data.msg.obj.id].current_state= data.msg.obj.current_state

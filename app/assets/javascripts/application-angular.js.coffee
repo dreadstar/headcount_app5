@@ -8,6 +8,7 @@
 #= require bootstrap-sprockets
 #= require angular
 #= require angular-route
+#= require angular-resource
 
 #= require angular-socket-io
 #= require angular-socket-io/socket
