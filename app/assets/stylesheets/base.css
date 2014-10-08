@@ -562,6 +562,11 @@ margin: 130px auto 40px auto;
 	background-color: #0000ff;
 }
 
+.favorite {
+/*	float: left; */
+	color: red;
+}
+
 .info-icon {
 	width: 15px;
 	height: 15px;
@@ -569,6 +574,6 @@ margin: 130px auto 40px auto;
 	border: 1px;
 	border-color: #000000;
 	padding: 0px;
-	
+
 }
 }

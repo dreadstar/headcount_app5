@@ -1,4 +1,4 @@
-json.array!(@doormsgs) do |doormsg|
-  json.extract! doormsg, :id, :door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr
-  json.url doormsg_url(doormsg, format: :json)
+json.array!(@userlocationfavs) do |userlocationfav|
+  json.extract! userlocationfav, :id, :user_id, :location_id, :created_at, :updated_at
+  json.url user_location_fav_url(userlocationfav, format: :json)
 end

@@ -5,7 +5,8 @@ class UserLocationFavsController < ApplicationController
   # GET /doormsgs
   # GET /doormsgs.json
   def index
-    @userlocationfavs = UserLocationFav.all
+    @userlocationfavs = UserLocationFav.where( user_id: current_user.id)
+    logger.debug "user location: #{@userlocationfavs}"
   end
 
   # GET /doormsgs/1
@@ -30,12 +31,16 @@ class UserLocationFavsController < ApplicationController
     # @userlocationfav.user_id = 666
 
     respond_to do |format|
-      if @userlocationfav.save
-        format.html { redirect_to @userlocationfav, notice: 'UserLocationFav was successfully created.' }
-        format.json { render :show, status: :created, location: @userlocationfav }
+      if current_user
+        if @userlocationfav.save
+          format.html { redirect_to @userlocationfav, notice: 'UserLocationFav was successfully created.' }
+          format.json { render :show, status: :created, location: @userlocationfav }
+        else
+          format.html { render :new }
+          format.json { render json: @userlocationfav.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @userlocationfav.errors, status: :unprocessable_entity }
+        render :json => {:errors => 'Login in to Save Favorites'}
       end
     end
   end
@@ -57,6 +62,7 @@ class UserLocationFavsController < ApplicationController
   # DELETE /doormsgs/1
   # DELETE /doormsgs/1.json
   def destroy
+    logger.debug "user locationfav destroy: #{@userlocationfav}"
     @userlocationfav.destroy
     respond_to do |format|
       format.html { redirect_to user_location_favs_url, notice: 'Userlocationfav was successfully destroyed.' }
@@ -74,9 +80,8 @@ class UserLocationFavsController < ApplicationController
     def userlocationfav_params
       # params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
       # figre out ay to insert user_id to parameters
-      params.require(:user_location_fav).permit(:location_id, :tstamp)
-    end
-    def find_door
-    @door ||= UserLocationFav.find(:conditions => [ "sensor_id = ?", params[:sensor_id]])
+      params.require(:user_location_fav).permit(:location_id)
+    
+    
   end
 end

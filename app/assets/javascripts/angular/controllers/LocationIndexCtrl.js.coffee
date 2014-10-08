@@ -5,6 +5,7 @@
 #@headcount.controller 'LocationIndexCtrl', ['$scope', '$location', '$http', ($scope, $location, $http) ->
   $scope.locs = []
   $scope.locsindex = []
+  $scope.favorites = []
   # intimate,cool, hot
   $scope.colors = ['black','blue','red']
   # results radius
@@ -21,12 +22,37 @@
     console.log $scope.locsindex 
   )
 
+  # get the favorites
+  favorites=UserFavorite.query( ->
+  	console.log(favorites)
+  	$scope.locs[$scope.locsindex[fav.location_id]].isFavorite=true for fav, i in favorites
+  	$scope.locs[$scope.locsindex[fav.location_id]].favId=fav.id for fav, i in favorites
+  	console.log($scope.locs)
+  )
+  
+
   # handler for add remove favorites
   $scope.toggleFavorite = (id) ->
-			fav = new UserFavorite()
-			fav.location_id= id 
-			console.log fav
-			fav.$save()
+  		if $scope.locs[$scope.locsindex[id]].isFavorite 
+  			console.log('removing fav')
+  			fav=UserFavorite.get({id: $scope.locs[$scope.locsindex[id]].favId }, ->
+  				fav.$delete()
+  			)
+  			$scope.locs[$scope.locsindex[id]].isFavorite =false
+  		else
+  			console.log('adding fav')
+				fav = new UserFavorite()
+				fav.location_id= id 
+				$scope.locs[$scope.locsindex[id]].isFavorite=true
+				console.log fav
+				fav.$save()
+				favorites=UserFavorite.query( ->
+			  	console.log(favorites)
+			  	$scope.locs[$scope.locsindex[fav.location_id]].isFavorite=true for fav, i in favorites
+			  	$scope.locs[$scope.locsindex[fav.location_id]].favId=fav.id for fav, i in favorites
+			  	console.log($scope.locs)
+			  )
+
   # the code to process an update notification
   socket.on('rt-locations',  (data) ->
     $scope.locs[data.msg.obj.id].current_state= data.msg.obj.current_state
