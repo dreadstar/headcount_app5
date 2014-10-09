@@ -80,7 +80,7 @@ class UserLocationFavsController < ApplicationController
     def userlocationfav_params
       # params.require(:doormsg).permit(:door_id, :tstamp, :msg, :sensor_id, :counter_state, :ip_addr)
       # figre out ay to insert user_id to parameters
-      params.require(:user_location_fav).permit(:location_id)
+      params.require(:user_location_fav).permit(:id, :location_id)
     
     
   end
