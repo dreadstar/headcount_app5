@@ -67,7 +67,9 @@
 
       });
 
-      
+      $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+      };
       
       $scope.toggleFavorite = function(id) {
         var fav;

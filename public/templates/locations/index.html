@@ -1,7 +1,16 @@
-
+<div>
 <!-- public/templates/restaurants/index.html -->
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
+
+<div class="dropdown" ng-if="alerts.length > 0" >
+	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">{{alerts[0].msg}} ({{alerts.length}}) <span class="caret"></span></button>
+  
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		<li>
+				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+		</li>
+	</ul>
+</div>
 <br>
 <a href="/#">index </a>
 <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
@@ -16,3 +25,4 @@
   		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15"></button>
 <button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;</button></li>
 </ul>
+</div>
