@@ -12,6 +12,13 @@
 	</ul>
 </div>
 <br>
+<div class="btn-group">
+  <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" ng-click="LoadView('all')" >All</label>
+  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" ng-click="LoadView('fav')" >Favorite</label>
+  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" ng-click="LoadView('pop')" >Popular</label>
+  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" ng-click="LoadView('hot')" >Hot</label>
+  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" ng-click="LoadView('cool')" >Cool</label>
+</div><br>
 <a href="/#">index </a>
 <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
       <option value="">-- choose range --</option>
@@ -23,7 +30,7 @@
   		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span></button>
   	<button ng-click="showInfo(loc.id)" class="toggle">
   		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15"></button>
-  		<button ng-click="toggleFavorite(loc.id)" class="toggle"  ng-if="loc.alerts.length > 0">
+  		<button class="toggle"  ng-if="loc.alerts.length > 0">
   		<span class="glyphicon glyphicon-star yellow" ></span></button>
 <button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;</button></li>
 </ul>

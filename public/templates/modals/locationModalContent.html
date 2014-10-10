@@ -1,0 +1,20 @@
+
+  <div class="modal-header">
+    <h3 class="modal-title">{{loc.name}}</h3><button  class="location-heat-lg" style="background-color: {{ loc.heatcolor }}">&nbsp;</button>
+  </div>
+  <div class="modal-body">
+   website: {{loc.site_url}}<br>
+   yelp: {{loc.yelp_url}}<br>
+   # of fans: {{loc.fanscnt}}<br>
+   
+    <ul>
+      <li ng-repeat="alert in loc.alerts">{{alert.msg}}<br>
+        {{alert.date_start}} - {{alert.date_end}}
+    </li>
+    </ul>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
