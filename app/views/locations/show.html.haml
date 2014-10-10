@@ -21,7 +21,15 @@
 %br
 = link_to 'Back to Locations', locations_path
 %br
+.page-title
+  %h2 Location Alerts
 
+  = form_tag("/admin/locations/#{@location.id}/alerts/new", method: 'get', id: 'new-action', class: 'form-inline') do
+    = submit_tag 'Create new Alert', class: 'btn btn-primary'
+
+  = form_tag("/admin/locations/#{@location.id}/alerts/index", method: 'get', id: 'view-action', class: 'form-inline') do
+    = submit_tag 'View Alerts', class: 'btn btn-primary'
+    
 .page-title
   %h2 Doors
 

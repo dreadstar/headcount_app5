@@ -60,4 +60,7 @@
                 
   }
 
-);`
+).factory('LocationAlert', function($resource){          
+    return $resource('/api/alerts/:id',{id:'@id'}, {});
+                
+  });`

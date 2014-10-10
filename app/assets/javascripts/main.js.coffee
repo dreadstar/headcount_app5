@@ -25,6 +25,7 @@
 # route for our application. The term "otherwise" here
 # might seem somewhat awkward, but it will make more
 # sense as we add more routes to our application.
+angular.module('myModule', ['ui.bootstrap'])
 @headcount.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
     when('/locations', {

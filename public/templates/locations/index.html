@@ -1,7 +1,8 @@
 
-
 <!-- public/templates/restaurants/index.html -->
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
+<br>
 <a href="/#">index </a>
 <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
       <option value="">-- choose range --</option>

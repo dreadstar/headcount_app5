@@ -1,0 +1,34 @@
+<h1>Listing Alerts</h1>
+<%= link_to 'New Alert', new_location_alert_path(@location.id) %>
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Msg</th>
+    
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alerts.each do |alert| %>
+      <tr>
+        <td><%= alert.door_id %></td>
+        <td><%= alert.date_start %></td>
+        <td><%= alert.date_end %></td>
+        <td><%= alert.msg %></td>
+      
+  
+        <td><%= link_to 'Show', doormsg %></td>
+        <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
+        <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

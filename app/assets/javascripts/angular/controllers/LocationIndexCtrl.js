@@ -1,10 +1,12 @@
 (function() {
   this.headcount.controller('LocationIndexCtrl', [
-    '$scope', '$location', '$http', 'socket', 'UserFavorite', function($scope, $location, $http, socket, UserFavorite) {
-      var favorites;
+    '$scope', '$location', '$http', 'socket', 'UserFavorite','LocationAlert', function($scope, $location, $http, socket, UserFavorite,LocationAlert) {
+      var favorites=[];
+      var locationAlerts=[];
       $scope.locs = [];
       $scope.locsindex = [];
       $scope.favorites = [];
+      $scope.alerts = [];
       $scope.colors = ['black', 'blue', 'red'];
       $scope.search_ranges = [
         {
@@ -33,21 +35,40 @@
         for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
           loc = _ref[i];
           $scope.locsindex[$scope.locs[i].id] = i;
+          $scope.locs[i].alerts=[];
         }
         console.log($scope.locs);
-        return console.log($scope.locsindex);
+        console.log($scope.locsindex);
+
+        favorites = UserFavorite.query(function() {
+          var fav, i, _i, _j, _len, _len1;
+          console.log(favorites);
+          for (i = _i = 0, _len = favorites.length; _i < _len; i = ++_i) {
+            fav = favorites[i];
+            $scope.favorites.push(fav);
+            $scope.locs[$scope.locsindex[fav.location_id]].isFavorite = true;
+            $scope.locs[$scope.locsindex[fav.location_id]].favId = fav.id;
+          }
+          
+          console.log($scope.locs);
+        });
+
+        locationAlerts = LocationAlert.query(function() {
+          var i, _i, _j, _len, _len1;
+          console.log(locationAlerts);
+          for (i = _i = 0, _len = locationAlerts.length; _i < _len; i = ++_i) {
+            alert = locationAlerts[i];
+            $scope.locs[$scope.locsindex[alert.location_id]].alerts.push(alert);
+            $scope.alerts.unshift({msg: alert.msg, type:"success"});
+          }
+          
+          console.log($scope.alerts);
+        });
+
       });
-      favorites = UserFavorite.query(function() {
-        var fav, i, _i, _j, _len, _len1;
-        console.log(favorites);
-        for (i = _i = 0, _len = favorites.length; _i < _len; i = ++_i) {
-          fav = favorites[i];
-          $scope.locs[$scope.locsindex[fav.location_id]].isFavorite = true;
-          $scope.locs[$scope.locsindex[fav.location_id]].favId = fav.id;
-        }
-        
-        console.log($scope.locs);
-      });
+
+      
+      
       $scope.toggleFavorite = function(id) {
         var fav;
         if ($scope.locs[$scope.locsindex[id]].isFavorite) {
@@ -72,18 +93,32 @@
             for (i = _i = 0, _len = favorites.length; _i < _len; i = ++_i) {
               fav = favorites[i];
               $scope.locs[$scope.locsindex[fav.location_id]].isFavorite = true;
-            }
-            for (i = _j = 0, _len1 = favorites.length; _j < _len1; i = ++_j) {
-              fav = favorites[i];
               $scope.locs[$scope.locsindex[fav.location_id]].favId = fav.id;
             }
+            
             console.log($scope.locs);
           });
         }
       };
-      socket.on('rt-locations', function(data) {
-        $scope.locs[data.msg.obj.id].current_state = data.msg.obj.current_state;
-        $scope.locs[data.msg.obj.id].fanscnt = data.msg.obj.fanscnt;
+      socket.on('realtime_msg', function(data) {
+        
+        switch(data.msg.resource) {
+          case "locations":
+            console.log("sockio - location");
+            $scope.locs[data.msg.obj.id].current_state = data.msg.obj.current_state;
+            $scope.locs[data.msg.obj.id].fanscnt = data.msg.obj.fanscnt;
+            break;
+          case "alerts":
+            console.log("sockio - alerts");
+            if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
+              $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
+              $scope.locs[$scope.locsindex[data.msg.obj.location_id]].alerts.push(data.msg.obj);
+            }
+            break;
+          default:
+            console.log("unmatched subscription message");
+        }
+        
         console.log(data);
       });
     }

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         resources :doormsgs, only: [:index, :show, :destroy]
       end
       resources :rooms, only: [:new,:show, :edit, :create, :update, :destroy]
+      resources :alerts, only: [:index,:new,:show, :edit, :create, :update, :destroy]
     end
      resources :users
      resources :admins
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
   scope "/api", defaults: {format: :json} do
     resources :doormsgs, only: [:index, :create, :show]
     resources :user_location_favs, only: [:index, :new, :create, :show, :destroy]
+    resources :alerts, only: [:index, :show, :destroy]
   end
     # , format: true
   # resources :todos
