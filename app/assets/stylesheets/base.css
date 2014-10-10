@@ -567,6 +567,11 @@ margin: 130px auto 40px auto;
 	color: red;
 }
 
+.yellow {
+/*	float: left; */
+	color: yellow;
+}
+
 .info-icon {
 	width: 15px;
 	height: 15px;

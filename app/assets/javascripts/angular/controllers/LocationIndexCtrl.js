@@ -58,8 +58,13 @@
           console.log(locationAlerts);
           for (i = _i = 0, _len = locationAlerts.length; _i < _len; i = ++_i) {
             alert = locationAlerts[i];
-            $scope.locs[$scope.locsindex[alert.location_id]].alerts.push(alert);
-            $scope.alerts.unshift({msg: alert.msg, type:"success"});
+            if (_.findWhere($scope.favorites,{location_id: alert.location_id}) ){
+              
+              $scope.alerts.unshift({msg: alert.msg, type:"success"});
+            }
+            if ($scope.locs[$scope.locsindex[alert.location_id]]){
+              $scope.locs[$scope.locsindex[alert.location_id]].alerts.push(alert);
+            }
           }
           
           console.log($scope.alerts);
@@ -114,13 +119,15 @@
             console.log("sockio - alerts");
             if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
               $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
+            }
+            if ($scope.locs[$scope.locsindex[data.msg.obj.location_id]]){
               $scope.locs[$scope.locsindex[data.msg.obj.location_id]].alerts.push(data.msg.obj);
             }
             break;
           default:
             console.log("unmatched subscription message");
         }
-        
+        $scope.$apply()
         console.log(data);
       });
     }

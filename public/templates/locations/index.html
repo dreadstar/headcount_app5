@@ -23,6 +23,8 @@
   		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span></button>
   	<button ng-click="showInfo(loc.id)" class="toggle">
   		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15"></button>
+  		<button ng-click="toggleFavorite(loc.id)" class="toggle"  ng-if="loc.alerts.length > 0">
+  		<span class="glyphicon glyphicon-star yellow" ></span></button>
 <button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;</button></li>
 </ul>
 </div>

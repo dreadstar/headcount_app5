@@ -29,8 +29,9 @@
 					$scope.$apply()
 			when "alerts"
 				console.log "sockio - alerts"
-				if _.findWhere($scope.$parent.favorites,{location_id: data.msg.obj.location_id}).length
+				if $scope.loc.id is data.msg.obj.location_id
 					$scope.loc.alerts.push(data.msg.obj)
+					$scope.$apply()
 
   )
     
