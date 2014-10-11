@@ -1,5 +1,5 @@
 (function() {
-this.headcount.controller('LocationModalInstanceCtrl',['$scope', 'loc','$scope.$modalInstance', function ($scope, $modalInstance, loc) {
+this.headcount.controller('LocationModalInstanceCtrl',['$scope','$modalInstance', 'loc', function ($scope, $modalInstance, loc) {
   console.log("location modal");
   console.log(loc);
   console.log($scope );
@@ -14,7 +14,7 @@ this.headcount.controller('LocationModalInstanceCtrl',['$scope', 'loc','$scope.$
   
 
   $scope.ok = function () {
-    $scope.$modalInstance.close();
+    $modalInstance.close();
   };
 
   $scope.cancel = function () {
