@@ -28,25 +28,28 @@
   </div>
   <!-- {{ locs }} -->
   <!-- <ul >  -->
-  <table  id="locationtable" class="table table-hover table-striped table-condensed"> <tbody>
+  <table  id="locationtable" class="table table-hover table-striped table-condensed"> 
+    <tbody>
   <tr class="row" ng-repeat="loc in locs" ng-controller='LocationItemCtrl'>
     <td class="col-sm-8">
       <a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
     </td>
-    <td class="col-sm-4">
+    <td class="col-sm-4" align="right">
+      <button class="toggle"  ng-if="loc.alerts.length > 0">
+        <span class="glyphicon glyphicon-star yellow" ></span>
+      </button>
     	<button ng-click="toggleFavorite(loc.id)" class="toggle">
     		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
       </button>
     	<button ng-click="showInfo(loc.id)" class="toggle">
     		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15">
       </button>
-    	<button class="toggle"  ng-if="loc.alerts.length > 0">
-    		<span class="glyphicon glyphicon-star yellow" ></span>
-      </button>
+    	
       <button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;
       </button>
     </td>
   </tr>
-  </tbody></table>
+  </tbody>
+</table>
 <!-- </ul>  -->
 </div>

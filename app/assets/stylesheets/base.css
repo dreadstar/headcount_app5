@@ -2,6 +2,10 @@ html,
 body {
 margin: 0;
 padding: 0;
+width: 530px;
+}
+.table{
+	width: 500px;
 }
 
 button {
