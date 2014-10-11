@@ -569,6 +569,9 @@ margin: 130px auto 40px auto;
 	border-color: #000000;
 	background-color: #0000ff;
 }
+.locationtable{
+	width: 300px;
+}
 
 .favorite {
 /*	float: left; */

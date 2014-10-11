@@ -40,7 +40,15 @@ Rails.application.routes.draw do
      resources :users
      resources :admins
   end
-  resources :locations, only: [ :index, :show]
+  resources :locations, only: [ :index, :show] do
+    collection do
+      get 'fav'
+      get 'pop'
+      get 'hot'
+      get 'cool'
+    end
+  end
+
   scope "/api", defaults: {format: :json} do
     resources :doormsgs, only: [:index, :create, :show]
     resources :user_location_favs, only: [:index, :new, :create, :show, :destroy]

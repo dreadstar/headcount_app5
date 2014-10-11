@@ -8,7 +8,44 @@ class LocationsController < ApplicationController
     respond_to do |format|
      	format.html # index.html
     	format.json { render json: @locations, each_serializer: LocationSerializer }
+      #LocationSerializer is where we setup fancnt
   	end
+  end
+
+  def fav
+    @locations = Location.where("id in (select location_id from user_location_favs where user_id = :user_id) " ,{user_id: current_user.id})
+    respond_to do |format|
+      format.html # index.html
+      format.json { render json: @locations, each_serializer: LocationSerializer }
+      #LocationSerializer is where we setup fancnt
+    end
+  end
+
+  def pop
+    @locations = Location.where("id in (select distinct location_id from user_location_favs )" ,{user_id: current_user.id})
+    respond_to do |format|
+      format.html # index.html
+      format.json { render json: @locations, each_serializer: LocationSerializer }
+      #LocationSerializer is where we setup fancnt
+    end
+  end
+
+  def hot
+    @locations = Location.all
+    respond_to do |format|
+      format.html # index.html
+      format.json { render json: @locations, each_serializer: LocationSerializer }
+      #LocationSerializer is where we setup fancnt
+    end
+  end
+
+  def cool
+    @locations = Location.all
+    respond_to do |format|
+      format.html # index.html
+      format.json { render json: @locations, each_serializer: LocationSerializer }
+      #LocationSerializer is where we setup fancnt
+    end
   end
 
   # GET /locations/1

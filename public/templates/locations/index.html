@@ -1,37 +1,52 @@
-<div>
+<div  id="container" class="container page center-block clearfix">
 <!-- public/templates/restaurants/index.html -->
 
+  <div class="page-header">
+    <div class="dropdown" ng-if="alerts.length > 0" >
+  	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">{{alerts[0].msg}} ({{alerts.length}}) <span class="caret"></span></button>
+    
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+  		<li>
+  				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  		</li>
+  	</ul>
 
-<div class="dropdown" ng-if="alerts.length > 0" >
-	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">{{alerts[0].msg}} ({{alerts.length}}) <span class="caret"></span></button>
-  
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-		<li>
-				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-		</li>
-	</ul>
-</div>
-<br>
-<div class="btn-group">
-  <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" ng-click="LoadView('all')" >All</label>
-  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" ng-click="LoadView('fav')" >Favorite</label>
-  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" ng-click="LoadView('pop')" >Popular</label>
-  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" ng-click="LoadView('hot')" >Hot</label>
-  <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" ng-click="LoadView('cool')" >Cool</label>
-</div><br>
-<a href="/#">index </a>
-<select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
+
+    </div>
+    <br>
+    <div class="btn-group">
+      <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" ng-click="LoadView('all')" >All</label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" ng-click="LoadView('fav')" >Favorite</label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" ng-click="LoadView('pop')" >Popular</label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" ng-click="LoadView('hot')" >Hot</label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" ng-click="LoadView('cool')" >Cool</label>
+    </div><br>
+    <a href="/#">index </a>
+    <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
       <option value="">-- choose range --</option>
     </select>
-<!-- {{ locs }} -->
-<ul >
-  <li ng-repeat="loc in locs" ng-controller='LocationItemCtrl'><a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
-  	<button ng-click="toggleFavorite(loc.id)" class="toggle">
-  		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span></button>
-  	<button ng-click="showInfo(loc.id)" class="toggle">
-  		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15"></button>
-  		<button class="toggle"  ng-if="loc.alerts.length > 0">
-  		<span class="glyphicon glyphicon-star yellow" ></span></button>
-<button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;</button></li>
-</ul>
+  </div>
+  <!-- {{ locs }} -->
+  <!-- <ul >  -->
+  <table  id="locationtable" class="table table-hover table-striped table-condensed"> <tbody>
+  <tr class="row" ng-repeat="loc in locs" ng-controller='LocationItemCtrl'>
+    <td class="col-sm-8">
+      <a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
+    </td>
+    <td class="col-sm-4">
+    	<button ng-click="toggleFavorite(loc.id)" class="toggle">
+    		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
+      </button>
+    	<button ng-click="showInfo(loc.id)" class="toggle">
+    		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15">
+      </button>
+    	<button class="toggle"  ng-if="loc.alerts.length > 0">
+    		<span class="glyphicon glyphicon-star yellow" ></span>
+      </button>
+      <button  class="location-heat" style="background-color: {{ heatcolor }}">&nbsp;
+      </button>
+    </td>
+  </tr>
+  </tbody></table>
+<!-- </ul>  -->
 </div>

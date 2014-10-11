@@ -54,13 +54,35 @@
             console.log("unmatched subscription message");
         }
 
-        $http.get('./locations.json').success(function(data) {
+        $http.get(locqry).success(function(data) {
           var i, loc, _i, _len, _ref;
           $scope.locs = data.locations;
           _ref = $scope.locs;
+
+          switch(view) {
+            case "all":
+              $scope.locs= _.sortBy($scope.locs,  function(o) { return o.name; });
+              break;
+            case "fav":
+              $scope.locs = _.sortBy($scope.locs, function(o) { return o.name; });
+              break;
+            case "pop":
+              $scope.locs = _.sortBy($scope.locs,  function(o) { return o.fanscnt; } );
+              break;
+            case "hot":
+              $scope.locs = _.sortBy($scope.locs,  function(o) { return  -1 * o.current_state/o.max_cap; });
+              break;
+            case "cool":
+              $scope.locs = _.sortBy($scope.locs,  function(o) { return o.current_state/o.max_cap; });
+              break;
+            default:
+              console.log("unmatched subscription message");
+          }
+
           for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
             loc = _ref[i];
             $scope.locsIndex[$scope.locs[i].id] = i;
+            $scope.locs[i].heat=$scope.locs[i].current_state/$scope.locs[i].max_cap;
             $scope.locs[i].alerts=[];
           }
           console.log($scope.locs);
@@ -138,13 +160,19 @@
       $scope.toggleFavorite = function(id) {
         var fav;
         if ($scope.locs[$scope.locsIndex[id]].isFavorite) {
-          console.log('removing fav');
+          console.log('removing fav '+id+ ' obj.favId'+ $scope.locs[$scope.locsIndex[id]].favId);
+
+          console.log($scope.locs[$scope.locsIndex[id]]);
           fav = UserFavorite.get({
-            id: $scope.locs[$scope.locsIndex[id]].favId
+            id: $scope.favorites.filter(function(x) { return x.location_id == id })[0].id
           }, function() {
-            return fav.$delete();
+            console.log('tracking down fav delete error');
+            fav.$delete();
           });
-          $scope.locs[$scope.locsIndex[id]].isFavorite = false;
+          console.log('tracking down fav delete error2');
+          $scope.favorites.splice($scope.favorites.filter(function(x) { return x.location_id == id })[0], 1);
+          delete $scope.locs[$scope.locsIndex[id]].isFavorite;
+          delete $scope.locs[$scope.locsIndex[id]].favId;
         } else {
           console.log('adding fav');
         
@@ -152,18 +180,24 @@
           fav.location_id = id;
           $scope.locs[$scope.locsIndex[id]].isFavorite = true;
           console.log(fav);
-          fav.$save();
-          favorites = UserFavorite.query(function() {
-            var i, _i, _j, _len, _len1;
-            console.log(favorites);
-            for (i = _i = 0, _len = favorites.length; _i < _len; i = ++_i) {
-              fav = favorites[i];
-              $scope.locs[$scope.locsIndex[fav.location_id]].isFavorite = true;
-              $scope.locs[$scope.locsIndex[fav.location_id]].favId = fav.id;
-            }
+          fav.$save(function(){
+            favorites = UserFavorite.query(function() {
+              var i, _i, _j, _len, _len1;
+              console.log(favorites);
+              $scope.favorites=favorites;
+              for (i = _i = 0, _len = favorites.length; _i < _len; i = ++_i) {
+                fav = favorites[i];
+                console.log('in loop f.loc_id '+fav.location_id+ ' f.id '+fav.id + ' loc.indx '+ $scope.locsIndex[fav.location_id] );
+                $scope.locs[$scope.locsIndex[fav.location_id]].isFavorite = true;
+                $scope.locs[$scope.locsIndex[fav.location_id]].favId = fav.id;
+                console.log($scope.locs[$scope.locsIndex[fav.location_id]]);
+              }
+              
+              console.log($scope.locs);
+            });
             
-            console.log($scope.locs);
           });
+            
         }
       };
 
@@ -176,8 +210,10 @@
             $scope.locs[$scope.locsIndex[data.msg.obj.id]].fanscnt = data.msg.obj.fanscnt;
             break;
           case "alerts":
-            console.log("sockio - alerts");
+            console.log("sockio - alerts alert:loc "+data.msg.obj.location_id);
+            console.log($scope.favorites);
             if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
+              console.log('loc is a fav add to scope alerts');
               $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
             }
             if ($scope.locs[$scope.locsIndex[data.msg.obj.location_id]]){
@@ -187,7 +223,7 @@
           default:
             console.log("unmatched subscription message");
         }
-        $scope.$apply()
+        $scope.$apply();
         console.log(data);
       });
     }
