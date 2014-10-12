@@ -3,13 +3,22 @@ class Location < ActiveRecord::Base
 	has_many :rooms
 	has_many :doors # , after_add: :update_counter
 	has_many :user_location_favs
-	has_many :users, through: :user_location_favs 
+	# has_many :users, through: :user_location_favs 
+	has_many :alerts
 
 	after_create {|location| location.message 'create' }
   after_update {|location| location.message 'update' }
   after_destroy {|location| location.message 'destroy' }
   after_commit {|location| location.message 'update' }
 
+  acts_as_mappable
+  before_validation :geocode_address, :on => :create
+
+  
+
+  def complete_address
+  	"#{self.address}, #{self.city}, #{self.state}, #{self.zip}"
+  end
 	def update_state
 		# sum of all doo
 		new_current_state=0
@@ -42,4 +51,10 @@ class Location < ActiveRecord::Base
 
 	accepts_nested_attributes_for :rooms, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 	accepts_nested_attributes_for :doors, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+	private
+  def geocode_address
+    geo=Geokit::Geocoders::MultiGeocoder.geocode (complete_address)
+    errors.add(:complete_address, "Could not Geocode address") if !geo.success
+    self.lat, self.lng = geo.lat,geo.lng if geo.success
+  end
 end

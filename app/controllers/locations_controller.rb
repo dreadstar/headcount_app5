@@ -103,7 +103,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.destroy
+    @location.destroy_all
     respond_to do |format|
       format.html { redirect_to locations_url }
       format.json { head :no_content }
@@ -118,6 +118,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :max_cap, :site_url, :yelp_url, :current_state,:user_id, :is_active)
+      params.require(:location).permit(:name, :max_cap, :site_url, :yelp_url, :current_state,:user_id,:address, :city, :state, :country, :postal_code, :user_id, :is_active)
     end
 end

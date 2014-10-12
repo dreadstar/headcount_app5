@@ -2,11 +2,11 @@
 <!-- public/templates/restaurants/index.html -->
 
   <div class="page-header">
-    <div class="dropdown" ng-if="alerts.length > 0" >
-  	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">{{alerts[0].msg}} ({{alerts.length}}) <span class="caret"></span></button>
+    <div class="dropdown" ng-if="alerts.length > 0" >  <!-- data-toggle="dropdown" -->
+  	<button type="button" class="btn btn-danger dropdown-toggle" >{{alerts[0].msg}} ({{alerts.length}}) <span class="caret"></span></button>
     
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-  		<li>
+    <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
+  		<li class="alert-li">
   				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   		</li>
   	</ul>
@@ -32,7 +32,7 @@
     <tbody>
   <tr class="row" ng-repeat="loc in locs" ng-controller='LocationItemCtrl'>
     <td class="col-sm-8">
-      <a ng-click="viewLocation(loc.id)">{{ loc.name }}</a>
+      <a ng-click="showInfo(loc.id)">{{ loc.name }}</a>
     </td>
     <td class="col-sm-4" align="right">
       <button class="toggle"  ng-if="loc.alerts.length > 0">

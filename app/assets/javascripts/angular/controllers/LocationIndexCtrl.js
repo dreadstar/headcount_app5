@@ -140,7 +140,7 @@
         $scope.modalInstance = $modal.open({
           templateUrl: '../templates/modals/locationModalContent.html',
           controller: 'LocationModalInstanceCtrl',
-          size: 'sm',
+          size: 'md',
           resolve: {
             loc: function () {
               return $scope.locs[$scope.locsIndex[id]];

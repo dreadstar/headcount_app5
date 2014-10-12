@@ -53,4 +53,5 @@ gem 'realtime'
 gem 'redis'
 gem 'foreman'
 gem 'browserify-rails'
+gem 'geokit-rails'
 

@@ -4,7 +4,7 @@ class LocationSerializer < ActiveModel::Serializer
 #    object.id.to_s
 #  end
   def fanscnt
-  	object.users.size
+  	object.user_location_favs.size
 
   end
   def current_state
@@ -23,7 +23,7 @@ class LocationSerializer < ActiveModel::Serializer
   end
 
 
-  attributes :id, :name, :max_cap, :current_state, :yelp_url, :site_url, :fanscnt
+  attributes :id, :name, :max_cap, :current_state, :yelp_url, :site_url, :fanscnt, :address, :city,:state,:postal_code, :country
   # has_many :userlocationfavs, embed: :ids
   # has_many :doors
   # has_many :user_location_favs

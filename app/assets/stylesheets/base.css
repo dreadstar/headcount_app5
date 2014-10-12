@@ -2,10 +2,7 @@ html,
 body {
 margin: 0;
 padding: 0;
-width: 530px;
-}
-.table{
-	width: 500px;
+width:930px;
 }
 
 button {
@@ -557,6 +554,13 @@ left: 8px;
 width: 550px;
 margin: 130px auto 40px auto;
 }
+
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+   }
+}
 .location-heat {
 /*	float: left; */
 	width: 15px;
@@ -564,6 +568,7 @@ margin: 130px auto 40px auto;
 	border: 1px;
 	border-color: #000000;
 	background-color: #0000ff;
+	vertical-align: middle;
 }
 .location-heat-lg {
 /*	float: left; */
@@ -573,7 +578,7 @@ margin: 130px auto 40px auto;
 	border-color: #000000;
 	background-color: #0000ff;
 }
-.locationtable{
+#locationtable{
 	width: 300px;
 }
 
@@ -584,7 +589,7 @@ margin: 130px auto 40px auto;
 
 .yellow {
 /*	float: left; */
-	color: yellow;
+	color: green;
 }
 
 .info-icon {
@@ -595,5 +600,4 @@ margin: 130px auto 40px auto;
 	border-color: #000000;
 	padding: 0px;
 
-}
 }
