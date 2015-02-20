@@ -589,6 +589,10 @@ margin: 130px auto 40px auto;
 
 .yellow {
 /*	float: left; */
+	color: yellow;
+}
+.green {
+/*	float: left; */
 	color: green;
 }
 
@@ -600,4 +604,134 @@ margin: 130px auto 40px auto;
 	border-color: #000000;
 	padding: 0px;
 
+}
+#resultcontainer{
+		height: 400px;
+		overflow: auto;
+}
+
+
+
+
+.location-entry{
+  
+}
+
+
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+@-webkit-keyframes lightSpeedOut {
+  100% {opacity: 1;}
+  0% {opacity: 0;}
+}
+
+@keyframes lightSpeedOut {
+  100% {opacity: 1;}
+  0% {opacity: 0;}
+}
+
+.lightSpeedOut {
+  -webkit-animation-name: lightSpeedOut;
+  animation-name: lightSpeedOut;
+}
+/* 
+http://www.yearofmoo.com/2013/12/staggering-animations-in-angularjs.html
+*/
+.location-entry.ng-enter-stagger {
+  /* 200ms will be applied between each sucessive enter operation */ 
+  -webkit-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -o-animation-delay:1s;
+  animation-delay:1s;
+
+  /* this is here to avoid accidental CSS inheritance */
+  -webkit-animation-duration:0;
+  -moz-animation-duration:0;
+  -o-animation-duration:0;
+  animation-duration:0;
+}
+/*
+.location-entry.ng-leave-stagger {
+ 
+  -webkit-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -o-animation-delay:1s;
+  animation-delay:1s;
+
+  
+  -webkit-animation-duration:0;
+  -moz-animation-duration:0;
+  -o-animation-duration:0;
+  animation-duration:0;
+}
+*/
+.location-entry.ng-enter {
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+ 	-o-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+
+  opacity:0;
+  
+}
+.location-entry.ng-leave {
+	/*
+  -webkit-animation: lightSpeedOut 2s;
+  -moz-animation: lightSpeedOut 2s;
+ 	-o-animation: lightSpeedOut 2s;
+  animation: lightSpeedOut 2s;
+*/
+opacity: 0;
+line-height: 0px;
+  
+  
+}
+.location-entry.ng-leave.ng-leave-active {
+	/*
+  -webkit-animation: lightSpeedOut 2s;
+  -moz-animation: lightSpeedOut 2s;
+ 	-o-animation: lightSpeedOut 2s;
+  animation: lightSpeedOut 2s;
+  */
+  
+  opacity: 0;
+  line-height: 0px;
+  
+  
+}
+.location-entry.ng-enter.ng-enter-active {
+  
+  
+}
+.location-alert{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.table-striped > tbody > tr.location-entry.ng-enter.ng-enter-active:nth-child(odd) > td, .table-striped > tbody > tr.location-entry.ng-enter.ng-enter-active:nth-child(odd) > th {
+   background-color: #F9F9F9;
+}
+
+.alerts{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.row {
+	height: auto;
+}
+.dropdown-menu {
+    width: 300px !important;
+    
 }

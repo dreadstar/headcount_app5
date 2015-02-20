@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012035856) do
+ActiveRecord::Schema.define(version: 20150219161828) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20141012035856) do
     t.string   "state"
     t.string   "postal_code"
     t.string   "country"
+    t.float    "latitude",      limit: 24
+    t.float    "longitude",     limit: 24
   end
 
   create_table "rooms", force: true do |t|

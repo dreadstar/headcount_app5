@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
   end
 
   def pop
-    @locations = Location.where("id in (select distinct location_id from user_location_favs )" ,{user_id: current_user.id})
+    @locations = Location.where("id in (select distinct location_id from user_location_favs )" )
     respond_to do |format|
       format.html # index.html
       format.json { render json: @locations, each_serializer: LocationSerializer }
@@ -118,6 +118,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :max_cap, :site_url, :yelp_url, :current_state,:user_id,:address, :city, :state, :country, :postal_code, :user_id, :is_active)
+      params.require(:location).permit(:name, :max_cap, :site_url, :yelp_url, :current_state,:user_id,:address, :city, :state, :country, :postal_code, :user_id, :is_active, :longitude, :latitude)
     end
 end

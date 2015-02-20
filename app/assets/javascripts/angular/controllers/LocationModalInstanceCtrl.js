@@ -1,24 +1,25 @@
+
+
 (function() {
-this.headcount.controller('LocationModalInstanceCtrl',['$scope','$modalInstance', 'loc', function ($scope, $modalInstance, loc) {
+this.headcount.controller('LocationModalInstanceCtrl',['$scope','$modalInstance','chroma', 'loc', function ($scope, $modalInstance,chroma, loc) {
   console.log("location modal");
   console.log(loc);
-  console.log($scope );
-  console.log(this );
-  $scope.loc = loc;
 
-  $scope.heat = $scope.loc.current_state/$scope.loc.max_cap;
+  $scope.loc = loc;
+  $scope.getcolor=chroma.getHeatColor;
+
   // UserFav = $resource('/api/user_location_favs/:id',{id:'@id'}, {})
 
 
   //$scope.heatcolor = $scope.$parent.$parent.getcolor($scope.heat);
-  
+
 
   $scope.ok = function () {
     $modalInstance.close();
   };
 
   $scope.cancel = function () {
-    $scope.$modalInstance.dismiss('cancel');
+    $modalInstance.dismiss('cancel');
   };
 }]);
 }).call(this);

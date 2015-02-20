@@ -1,0 +1,50 @@
+{
+  "name": "headcount",
+  "version": "1.0.0",
+  "description": "js app for headcount system",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "browserify": "^5.10.1",
+    "gulp-jshint": "^1.9.0",
+    "jshint-stylish": "^1.0.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "main-bower-files": "^2.4.0",
+    "karma": "^0.12.25",
+    "karma-jasmine": "^0.2.3",
+    "socket.io": "^1.0.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-concat": "^2.5.1",
+    "gulp-jshint": "^1.9.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "^1.3.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreadstar/headcount_app5.git"
+  },
+  "keywords": [
+    "angular",
+    "redis",
+    "socket-io",
+    "rails"
+  ],
+  "author": "Tyrone Thomas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreadstar/headcount_app5/issues"
+  },
+  "homepage": "https://github.com/dreadstar/headcount_app5"
+}

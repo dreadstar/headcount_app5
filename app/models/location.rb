@@ -11,13 +11,14 @@ class Location < ActiveRecord::Base
   after_destroy {|location| location.message 'destroy' }
   after_commit {|location| location.message 'update' }
 
-  acts_as_mappable
-  before_validation :geocode_address, :on => :create
+  # acts_as_mappable
+  geocoded_by :complete_address
+  after_validation :geocode, :if => :check_address_changed? #, :on => :create
 
   
 
   def complete_address
-  	"#{self.address}, #{self.city}, #{self.state}, #{self.zip}"
+  	"#{self.address}, #{self.city}, #{self.state}, #{self.postal_code}"
   end
 	def update_state
 		# sum of all doo
@@ -52,9 +53,12 @@ class Location < ActiveRecord::Base
 	accepts_nested_attributes_for :rooms, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 	accepts_nested_attributes_for :doors, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 	private
-  def geocode_address
-    geo=Geokit::Geocoders::MultiGeocoder.geocode (complete_address)
-    errors.add(:complete_address, "Could not Geocode address") if !geo.success
-    self.lat, self.lng = geo.lat,geo.lng if geo.success
-  end
+    def check_address_changed?
+      :address_changed? || :postal_code_changed? || :city_changed? || :state_changed? 
+    end
+  # def geocode_address
+  #   geo=Geokit::Geocoders::MultiGeocoder.geocode (complete_address)
+  #   errors.add(:complete_address, "Could not Geocode address") if !geo.success
+  #   self.lat, self.lng = geo.lat,geo.lng if geo.success
+  # end
 end

@@ -1,8 +1,8 @@
-<form name="myForm" novalidate ng-submit="submit(myForm)">
+<!-- public/templates/modals/alertsList.html -->
   <div class="modal-header">
     <div class="row"  >
       <div class="pull-left" style="padding-left:15px;">
-        <h3 class="modal-title">Login</h3>
+        <h3 class="modal-title">Alerts</h3>
       </div>
 
       <div class="pull-right" style="padding-right:15px;">
@@ -11,10 +11,13 @@
     </div>
   </div>
   <div class="modal-body">
-    <input type="text" placeholder="email" value="">
-    <input type="password" value="">
+    <ul class="alerts"  aria-labelledby="dLabel" style="list-style-type: none;">
+      <li class="alert-li" ng-repeat="alert in alerts">
+          <alert class="location-alert" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+      </li>
+    </ul>
+
   </div>
   <div class="modal-footer">
-    
+
   </div>
-</form>

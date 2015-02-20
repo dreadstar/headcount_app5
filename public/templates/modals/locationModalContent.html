@@ -1,20 +1,29 @@
-
+<!-- public/templates/modals/locationModalContent.html -->
   <div class="modal-header">
-    <button  class="location-heat-lg" style="background-color: {{ loc.heatcolor }}">&nbsp;</button<h3 class="modal-title">{{loc.name}}</h3>
+
+    <div class="row"  >
+      <div class="pull-left" style="padding-left:15px;">
+        <button type="button"  class="location-heat-lg" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;</button>&nbsp;&nbsp;<span class="modal-title  h3">{{loc.name}}</span>
+      </div>
+
+      <div class="pull-right" style="padding-right:15px;">
+        <button type="button"  class="btn btn-primary" ng-click="ok()">OK</button>
+
+      </div>
+    </div>
   </div>
   <div class="modal-body">
    website: {{loc.site_url}}<br>
    yelp: {{loc.yelp_url}}<br>
    # of fans: {{loc.fanscnt}}<br>
-   
+
     <ul>
       <li ng-repeat="alert in loc.alerts">{{alert.msg}}<br>
         {{alert.date_start}} - {{alert.date_end}}
     </li>
     </ul>
-    
+
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+
   </div>

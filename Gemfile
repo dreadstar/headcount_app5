@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-
+gem 'bundler', '>= 1.7.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 gem 'mysql2'
+gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -41,17 +42,26 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'ember-rails'
 gem 'ember-data-source', '>= 1.0.0.beta7'
-gem 'angularjs-rails'
+gem 'angularjs-rails', '>= 1.3.10'
 gem 'bower'
 gem 'bower-rails', '~> 0.8.2'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 gem 'active_model_serializers'
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'autoprefixer-rails', '>= 5.0.0.1'
 gem 'bunny'
 gem 'realtime'
 gem 'redis'
 gem 'foreman'
 gem 'browserify-rails'
-gem 'geokit-rails'
-
+gem 'yaml_db'
+# gem 'geokit-rails' might not be needed
+gem 'lodash-rails'
+gem 'geocoder'
+gem 'angular_rails_csrf'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular-devise'
+end
+group :production do
+  gem 'rails_12factor'
+end

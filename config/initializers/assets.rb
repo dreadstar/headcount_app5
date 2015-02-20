@@ -9,3 +9,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( custom.css )
 Rails.application.config.assets.precompile += %w( base.css )
 Rails.application.config.assets.precompile += %w( application-angular.js )
+Rails.application.config.assets.precompile += %w( lodash.js )
