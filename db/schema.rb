@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150219161828) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -80,8 +83,8 @@ ActiveRecord::Schema.define(version: 20150219161828) do
     t.string   "state"
     t.string   "postal_code"
     t.string   "country"
-    t.float    "latitude",      limit: 24
-    t.float    "longitude",     limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "rooms", force: true do |t|

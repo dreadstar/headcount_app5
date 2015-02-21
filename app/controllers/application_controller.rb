@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   protected
-  
+
 
   def set_realtime_user_id
     #  set @current_account from session data here
@@ -22,7 +22,10 @@ class ApplicationController < ActionController::Base
       # return 'http://localhost:5001'
       # return 'http://192.168.1.2:5001'
       return 'http://192.168.1.2:5001'
-    end 
+    end
+    if Rails.env.production?
+      return 'http://192.168.1.2:5001'
+    end
   end
 
 
@@ -33,6 +36,6 @@ class ApplicationController < ActionController::Base
     else
     	welcome_index_path
     end
-    
+
   end
 end
