@@ -64,5 +64,5 @@ source 'https://rails-assets.org' do
 end
 group :production do
   gem 'rails_12factor'
+  ruby "2.0.0"
 end
-ruby "2.0.0"
