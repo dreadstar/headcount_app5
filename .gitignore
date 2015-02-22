@@ -18,3 +18,6 @@
 # /vendor/assets/bower_components
 # Ignore gulp stuff
 /node_modules
+
+# Igmore db table backup
+/db/data.yml
