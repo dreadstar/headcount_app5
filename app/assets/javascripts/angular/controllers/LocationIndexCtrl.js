@@ -1,7 +1,8 @@
 (function() {
 
   this.headcount.controller('LocationIndexCtrl', [
-    '$scope', '$location', '$http', 'socket', 'UserFavorite','LocationAlert', '$modal', 'lodash','Auth','$q','chroma',function($scope, $location, $http, socket, UserFavorite,LocationAlert, $modal,_ ,Auth,$q,chroma) {
+    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$modal', 'lodash','Auth','$q','chroma','Locations',
+    function($scope, $location, socket, UserFavorite,LocationAlert, $modal,_ ,Auth,$q,chroma,Locations) {
 
       var favorites=[];
       var locationAlerts=[];
@@ -39,6 +40,7 @@
         }
       ];
       $scope.myRange = $scope.search_ranges[3];
+      var invisibleAlertLocations=[];
 
 
       // loading data all|fav|pop|hot|cool
@@ -50,62 +52,20 @@
         $scope.locsIndex=[];
         $scope.view=view;
         console.log('start LoadView '+ view);
-        switch(view) {
-          case "all":
-            locqry='./locations.json';
-            break;
-          case "fav":
-            locqry='./locations/fav.json';
-            break;
-          case "pop":
-            locqry='./locations/pop.json';
-            break;
-          case "hot":
-            locqry='./locations/hot.json';
-            break;
-          case "cool":
-            locqry='./locations/cool.json';
-            break;
-          default:
-            console.log("unmatched subscription message");
-        }
+        Locations.viewList(view)
+          .then(function(locs){
+            $scope.locs=locs;
+            _.map($scope.locs, function(loc,i){
+                $scope.locsIndex[$scope.locs[i].id] = i;
 
-        $http.get(locqry).success(function(data) {
-          var i, loc, _i, _len, _ref;
-          $scope.locs = data.locations;
-          _ref = $scope.locs;
+                $scope.locs[i].alerts=[];
+                return loc;
+              });
 
-          switch(view) {
-            case "all":
-              $scope.locs= _.sortBy($scope.locs,  function(o) { return o.name; });
-              break;
-            case "fav":
-              $scope.locs = _.sortBy($scope.locs, function(o) { return o.name; });
-              break;
-            case "pop":
-              $scope.locs = _.sortBy($scope.locs,  function(o) { return o.fanscnt; } );
-              break;
-            case "hot":
-              $scope.locs = _.sortBy($scope.locs,  function(o) { return  -1 * o.current_state/o.max_cap; });
-              break;
-            case "cool":
-              $scope.locs = _.sortBy($scope.locs,  function(o) { return o.current_state/o.max_cap; });
-              break;
-            default:
-              console.log("unmatched subscription message");
-          }
-
-          _.map($scope.locs, function(loc,i){
-              $scope.locsIndex[$scope.locs[i].id] = i;
-
-              $scope.locs[i].alerts=[];
-              return loc;
-            });
-
-          console.log($scope.locs);
-          console.log($scope.locsIndex);
-          deferred.resolve($scope.locs);
-        });
+            console.log($scope.locs);
+            console.log($scope.locsIndex);
+            deferred.resolve($scope.locs);
+          });
         return deferred.promise;
       };
 
@@ -196,9 +156,9 @@
         });
 
         modalInfo.result.then(function () {
-          console.log('Modal info success at: ' + new Date());
+          // console.log('Modal info success at: ' + new Date());
         }, function () {
-          console.log('Modal info dismissed at: ' + new Date());
+          // console.log('Modal info dismissed at: ' + new Date());
         })['finally'](function(){
           modalInfo = undefined;  // <--- This fixes
         });
@@ -215,14 +175,18 @@
           resolve: {
             alertslist: function () {
               return $scope.alerts;
+            },
+            locationslist: function () {
+              // should return join of locs and invisibleAlertLocations
+              return $scope.locs;
             }
           }
         });
 
         modalAlerts.result.then(function () {
-          console.log('Modal alerts success at: ' + new Date());
+          // console.log('Modal alerts success at: ' + new Date());
         }, function () {
-          console.log('Modal alerts dismissed at: ' + new Date());
+          // console.log('Modal alerts dismissed at: ' + new Date());
         })['finally'](function(){
           modalAlerts = undefined;  // <--- This fixes
         });
@@ -287,6 +251,8 @@
             if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
               console.log('loc is a fav add to scope alerts');
               $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
+              // TODO check alert location not in locs then pull to invisibleAlertLocations
+              // need a query flow for single location id
             }
             if ($scope.locs[$scope.locsIndex[data.msg.obj.location_id]]){
               $scope.locs[$scope.locsIndex[data.msg.obj.location_id]].alerts.push(data.msg.obj);
@@ -301,7 +267,7 @@
     }
   ]);
 
-/* animation of loation entires */
+/* animation of location entires */
 angular.module('headcount')
     .animation('.location-entry', function() {
 return {
