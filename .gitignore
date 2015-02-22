@@ -20,4 +20,4 @@
 /node_modules
 
 # Igmore db table backup
-/db/data.yml
+# /db/data.yml
