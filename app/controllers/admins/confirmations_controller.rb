@@ -1,4 +1,4 @@
-class admins::confirmationsController < Devise::confirmationsController
+class Admins::ConfirmationsController < Devise::ConfirmationsController
   # def new
   #   super
   # end

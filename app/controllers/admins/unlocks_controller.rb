@@ -1,4 +1,4 @@
-class admins::unlocksController < Devise::unlocksController
+class Admins::UnlocksController < Devise::UnlocksController
   # def new
   #   super
   # end
