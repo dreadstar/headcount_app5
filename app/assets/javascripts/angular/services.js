@@ -5,7 +5,11 @@ this.headcount
   // var socket = io.connect();
 	// var socket = io.connect("http://localhost:5001");
 	var socket = window.realtime.socketIo;
+
 	return {
+		ready: function(){
+			return typeof socket === 'undefined'?false:true;
+		},
 		on: function (eventName, callback) {
 			socket.on(eventName, function () {
 				var args = arguments;
@@ -36,7 +40,7 @@ this.headcount
     return $resource('/api/alerts/:id',{id:'@id'}, {});
 
 }])
-.factory('Locations', ['$resource','$q','$http','lodash',function($resource,$q,$http,_){ 
+.factory('Locations', ['$resource','$q','$http','lodash',function($resource,$q,$http,_){
 	  var _viewList= function(view){
 			var deferred = $q.defer();
 			var locqry;

@@ -235,35 +235,42 @@
 
         }
       };
+      // realtime stuff
+      if(socket.ready()){
+        socket.on('realtime_msg', function(data) {
 
-      socket.on('realtime_msg', function(data) {
+          switch(data.msg.resource) {
+            case "locations":
+              console.log("sockio - location");
+              $scope.locs[$scope.locsIndex[data.msg.obj.id]].current_state = data.msg.obj.current_state;
+              $scope.locs[$scope.locsIndex[data.msg.obj.id]].fanscnt = data.msg.obj.fanscnt;
+              break;
+            case "alerts":
+              console.log("sockio - alerts alert:loc "+data.msg.obj.location_id);
+              locationAlerts.unshift(data.msg.obj);
+              console.log($scope.favorites);
+              if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
+                console.log('loc is a fav add to scope alerts');
+                $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
+                // TODO check alert location not in locs then pull to invisibleAlertLocations
+                // need a query flow for single location id
+              }
+              if ($scope.locs[$scope.locsIndex[data.msg.obj.location_id]]){
+                $scope.locs[$scope.locsIndex[data.msg.obj.location_id]].alerts.push(data.msg.obj);
+              }
+              break;
+            default:
+              console.log("unmatched subscription message");
+          }
+          // $scope.$apply();
+          console.log(data);
+        });
+        // end of socket - time
+      }else{
+        console.log('socketio not ready');
+      }
 
-        switch(data.msg.resource) {
-          case "locations":
-            console.log("sockio - location");
-            $scope.locs[$scope.locsIndex[data.msg.obj.id]].current_state = data.msg.obj.current_state;
-            $scope.locs[$scope.locsIndex[data.msg.obj.id]].fanscnt = data.msg.obj.fanscnt;
-            break;
-          case "alerts":
-            console.log("sockio - alerts alert:loc "+data.msg.obj.location_id);
-            locationAlerts.unshift(data.msg.obj);
-            console.log($scope.favorites);
-            if (_.findWhere($scope.favorites,{location_id: data.msg.obj.location_id}) ){
-              console.log('loc is a fav add to scope alerts');
-              $scope.alerts.unshift({msg: data.msg.obj.msg, type:"success"});
-              // TODO check alert location not in locs then pull to invisibleAlertLocations
-              // need a query flow for single location id
-            }
-            if ($scope.locs[$scope.locsIndex[data.msg.obj.location_id]]){
-              $scope.locs[$scope.locsIndex[data.msg.obj.location_id]].alerts.push(data.msg.obj);
-            }
-            break;
-          default:
-            console.log("unmatched subscription message");
-        }
-        // $scope.$apply();
-        console.log(data);
-      });
+
     }
   ]);
 
