@@ -191,7 +191,38 @@
           modalAlerts = undefined;  // <--- This fixes
         });
       };
+      // end alert modal
+
+      //show the modal for login
+      $scope.showLogin =function (warn) {
+        console.log("opening login modal",warn );
+
+        var modalLogin = $modal.open({
+          templateUrl: '../templates/modals/loginModal.html',
+          controller: 'LoginModalInstanceCtrl',
+          size: 'md',
+          resolve: {
+            warn: function () {
+              return warn;
+            }
+          }
+        });
+
+        modalLogin.result.then(function () {
+          // console.log('Modal alerts success at: ' + new Date());
+        }, function () {
+          // console.log('Modal alerts dismissed at: ' + new Date());
+        })['finally'](function(){
+          modalLogin = undefined;  // <--- This fixes
+        });
+      };
+      // end login modal
+
       $scope.toggleFavorite = function(id) {
+        if(!$scope.isAuthenticated){
+          $scope.showLogin(true);
+          return;
+        }
         var fav;
         if ($scope.locs[$scope.locsIndex[id]].isFavorite) {
           console.log('removing fav '+id+ ' obj.favId'+ $scope.locs[$scope.locsIndex[id]].favId);
