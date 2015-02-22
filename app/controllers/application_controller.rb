@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       return 'http://192.168.1.2:5001'
     end
     if Rails.env.production?
-      return 'http://arcane-tundra-4360.herokuapp.com:5001'
+      return 'https://arcane-tundra-4360.herokuapp.com:5001'
     end
   end
 
