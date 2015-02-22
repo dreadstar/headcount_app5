@@ -61,8 +61,8 @@
     	<button type="button" ng-click="toggleFavorite(loc.id)" class="toggle"  stop-click-event >
     		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
       </button>
-    	<button type="button" ng-click="showInfo(loc.id)" stop-click-event class="toggle">
-    		<img class="info-icon" src="/assets/info-icon.png" height="15" width="15">
+    	<button type="button" ng-click="showInfo(loc.id)" stop-click-event class="toggle ">
+        <img class="info-icon" width="15" height="15">
       </button>
 
       <button  type="button" class="location-heat" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;
