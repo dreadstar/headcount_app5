@@ -40,10 +40,13 @@ test:
   port: 3306
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: tmt_headcount
-  username: tmt_headcount
-  password: dVfK6n8sg1yZ
-  host: 173.192.42.18
-  port: 3306
+  adapter: postgresql
+  encoding: unicode
+  database: headcount
+  # adapter: mysql2
+  # encoding: utf8
+  # database: headcount
+  # username: user
+  # password: password
+  # host: host
+  # port: 3306
