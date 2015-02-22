@@ -64,5 +64,6 @@ source 'https://rails-assets.org' do
 end
 group :production do
   gem 'rails_12factor'
+  gem 'haml-rails', '>= 0.3.4'
 end
 ruby '2.0.0'
