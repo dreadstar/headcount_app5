@@ -66,7 +66,6 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-		logger.info "redis-config ENV : #{ENV.inspect}"
     door = @location.doors.build
     room = @location.rooms.build
   end
