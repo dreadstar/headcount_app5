@@ -49,10 +49,10 @@ gem 'haml-rails', '>= 0.3.4'
 gem 'active_model_serializers'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails', '>= 5.0.0.1'
-gem 'bunny'
+# gem 'bunny'
 gem 'realtime'
 gem 'redis'
-gem 'foreman'
+gem 'foreman', group: :development
 gem 'browserify-rails'
 gem 'yaml_db'
 # gem 'geokit-rails' might not be needed
