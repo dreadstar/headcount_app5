@@ -64,6 +64,6 @@ source 'https://rails-assets.org' do
 end
 group :production do
   gem 'rails_12factor'
-  # gem 'rails_stdout_logging'
+  gem 'rails_stdout_logging'
 end
-# ruby '2.0.0'
+ruby '2.0.0'
