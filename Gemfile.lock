@@ -219,6 +219,7 @@ DEPENDENCIES
   rails (= 4.1.4)
   rails-assets-angular-devise!
   rails_12factor
+  rails_stdout_logging
   realtime
   redis
   sass-rails (>= 3.2)
