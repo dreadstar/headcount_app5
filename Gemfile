@@ -66,4 +66,8 @@ group :production do
   gem 'rails_12factor'
   gem 'rails_stdout_logging'
 end
-ruby '2.1.1'
+if ENV["RAILS_ENV"] == "development"
+  ruby '2.1.1'
+elsif ENV["RAILS_ENV"] == "production"
+  ruby '2.1.0'
+end
