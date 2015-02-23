@@ -42,7 +42,6 @@ class Location < ActiveRecord::Base
     obj= {msg: msg,
     	recipient_user_ids: [41, 42 ]}
     #		recipient_user_ids: [41, Location.realtime_user_id ]}
-		logger.debug "redis-config ENV : #{ENV.inspect}"
     logger.debug "message hash: #{obj.inspect}"
 		logger.info "redis messaging"
     # $redis.publish 'realtime_msg', msg.to_json
