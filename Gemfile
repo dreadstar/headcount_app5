@@ -45,7 +45,7 @@ gem 'ember-data-source', '>= 1.0.0.beta7'
 gem 'angularjs-rails', '>= 1.3.10'
 gem 'bower'
 gem 'bower-rails', '~> 0.8.2'
-gem 'haml-rails', '>= 0.3.4', :group => :development
+gem 'haml-rails', '>= 0.3.4'
 gem 'active_model_serializers'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails', '>= 5.0.0.1'
@@ -64,6 +64,6 @@ source 'https://rails-assets.org' do
 end
 group :production do
   gem 'rails_12factor'
-  gem 'haml-rails', '>= 0.3.4'
+  # gem 'rails_stdout_logging'
 end
-ruby '2.0.0'
+# ruby '2.0.0'
