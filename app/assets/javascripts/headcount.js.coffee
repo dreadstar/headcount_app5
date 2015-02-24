@@ -1,4 +1,21 @@
 # app/assets/javascripts/main.js.coffee
+#= require angular
+#= require angular-route
+#= require angular-aria
+#= require angular-resource
+# require angular-bootstrap
+#= require angular-animate
+#= require angular-material
+#= require angular-devise/devise
+
+#= require angular-socket-io
+#= require angular-socket-io/socket
+#= require lodash
+#= require chroma
+#= require_self
+#= require_tree ./angular
+
+
 
 # This line is related to our Angular app, not to our
 # HomeCtrl specifically. This is basically how we tell
@@ -29,7 +46,8 @@ angular.module('chroma', [])
 @headcount = angular.module('headcount', ['ngRoute',
 'ngResource',
 'btford.socket-io',
-'ui.bootstrap',
+'ngMaterial',
+'ngAria',
 'ngAnimate',
 'lodash',
 'Devise',

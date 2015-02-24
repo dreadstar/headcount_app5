@@ -1,22 +1,19 @@
-#= require jquery
-#= require jquery_ujs
-#= require handlebars
+# require jquery
+# require jquery_ujs
+# require handlebars
+#= require polymer/webcomponents
+#= require polymer/polymer
+# require core-ajax/core-ajax
+# require core-input/core-input
+# require core-icon/core-icon
+# core-icon-button/core-icon-button
+# core-animation/core-animation
+#= paper-icon-button/paper-icon-button
+#= paper-input/paper-input
 
 #= require_self
 
-#= require bootstrap-sprockets
-#= require angular
-#= require angular-route
-#= require angular-resource
-#= require angular-bootstrap
-#= require angular-animate
-#= require angular-devise/devise
+# require bootstrap-sprockets
 
-#= require angular-socket-io
-#= require angular-socket-io/socket
-#= require lodash
-#= require chroma
-
-#= require main
+#= require headcount
 # require services
-#= require_tree ./angular

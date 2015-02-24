@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
   get 'admin/index'
   # get 'admin', to: 'admin#index'
-  
+
   devise_for :users
   devise_for :admins
-  
+
   # resources :doormsgs
 
   # resources :rooms
 
   # resources :doors
 
- 
+
 
   get 'welcome/index'
   root 'welcome#index'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/users/sign_out',to: 'devise/sessions#destroy'
   end
   devise_scope :admins do
-    # @request.env["devise.mapping"] = Devise.mappings[:admin] 
+    # @request.env["devise.mapping"] = Devise.mappings[:admin]
     get '/admins/sign_in'
     # get '/admins/sign_out',to: 'devise/sessions#destroy'
     # delete '/admins/sign_out' => 'devise/sessions#destroy'
@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     resources :doormsgs, only: [:index, :create, :show]
     resources :user_location_favs, only: [:index, :new, :create, :show, :destroy]
     resources :alerts, only: [:index, :show, :destroy]
+    resources :locations, only: [:index, :show]
   end
-   
+
 end

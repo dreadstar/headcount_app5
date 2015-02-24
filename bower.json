@@ -1,7 +1,6 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "bootstrap": "latest",
     "angular": "latest",
     "chroma": "git@github.com:gka/chroma.js.git",
     "socket.io": "latest",
@@ -9,10 +8,7 @@
     "angular-animate": "latest",
     "animate.css": "latest",
     "fontawesome": "latest",
-    "browserify": "latest",
-    "angular-bootstrap": "latest",
-    "jquery": "latest"
-
+    "angular-material": "latest"
   },
   "resolutions": {
     "angular": "~1.3.13"

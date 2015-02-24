@@ -1,10 +1,10 @@
-#= require jquery
-#= require jquery_ujs
-#= require handlebars
-
+# require jquery
+# require jquery_ujs
+# require handlebars
+#= require polymer/webcomponents
 #= require_self
 
-#= require bootstrap-sprockets
+# require bootstrap-sprockets
 #= require angular
 #= require angular-route
 
