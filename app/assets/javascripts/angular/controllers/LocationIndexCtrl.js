@@ -1,8 +1,8 @@
 (function() {
 
   this.headcount.controller('LocationIndexCtrl', [
-    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$modal', 'lodash','Auth','$q','chroma','Locations',
-    function($scope, $location, socket, UserFavorite,LocationAlert, $modal,_ ,Auth,$q,chroma,Locations) {
+    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$mdDialog', 'lodash','Auth','$q','chroma','Locations',
+    function($scope, $location, socket, UserFavorite,LocationAlert, $mdDialog,_ ,Auth,$q,chroma,Locations) {
 
       var favorites=[];
       var locationAlerts=[];
@@ -141,38 +141,45 @@
 
 
       //show the modal for a location
-      $scope.showInfo = function (id,size) {
+      $scope.showInfo = function (id,$event) {
         console.log("opening location modal" ,id,$scope.locs[$scope.locsIndex[id]]);
-
-        var modalInfo = $modal.open({
+        var parentEl = angular.element(document.body);
+        console.log("login modal -parentEl",parentEl,$event );
+        var modalInfo = $mdDialog.show({
+          title:'<div flex="25"><button type="button"  class="location-heat-lg" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;</button></div><div flex="75">{{loc.name}}</div>',
+          parent: parentEl,
+          targetEvent: $event,
           templateUrl: '../templates/modals/locationModalContent.html',
           controller: 'LocationModalInstanceCtrl',
-          size: 'md',
-          resolve: {
+          // size: 'md',
+          locals: {
             loc: function () {
               return $scope.locs[$scope.locsIndex[id]];
             }
           }
-        });
+        })
+        ;
 
-        modalInfo.result.then(function () {
-          // console.log('Modal info success at: ' + new Date());
-        }, function () {
-          // console.log('Modal info dismissed at: ' + new Date());
-        })['finally'](function(){
-          modalInfo = undefined;  // <--- This fixes
-        });
+        // modalInfo.result.then(function () {
+        //   // console.log('Modal info success at: ' + new Date());
+        // }, function () {
+        //   // console.log('Modal info dismissed at: ' + new Date());
+        // })['finally'](function(){
+        //   modalInfo = undefined;  // <--- This fixes
+        // });
       };
 
       //show the modal for starred alerts
-      $scope.showAlerts = function () {
+      $scope.showAlerts = function ($event) {
         console.log("opening alerts modal",$scope.alerts );
-
-        var modalAlerts = $modal.open({
-          templateUrl: '../templates/modals/alertsList.html',
+        var parentEl = angular.element(document.body);
+        var modalAlerts = $mdDialog.show({
+          parent: parentEl,
+          targetEvent: $event,
+          template: '../templates/modals/alertsList.html',
           controller: 'AlertsListModalInstanceCtrl',
-          size: 'md',
-          resolve: {
+          // size: 'md',
+          locals: {
             alertslist: function () {
               return $scope.alerts;
             },
@@ -183,44 +190,47 @@
           }
         });
 
-        modalAlerts.result.then(function () {
-          // console.log('Modal alerts success at: ' + new Date());
-        }, function () {
-          // console.log('Modal alerts dismissed at: ' + new Date());
-        })['finally'](function(){
-          modalAlerts = undefined;  // <--- This fixes
-        });
+        // modalAlerts.result.then(function () {
+        //   // console.log('Modal alerts success at: ' + new Date());
+        // }, function () {
+        //   // console.log('Modal alerts dismissed at: ' + new Date());
+        // })['finally'](function(){
+        //   modalAlerts = undefined;  // <--- This fixes
+        // });
       };
       // end alert modal
 
       //show the modal for login
-      $scope.showLogin =function (warn) {
+      $scope.showLogin =function (warn,$event) {
         console.log("opening login modal",warn );
+        var parentEl = angular.element(document.body);
 
-        var modalLogin = $modal.open({
+        var modalLogin = $mdDialog.open({
+          parent: parentEl,
+          targetEvent: $event,
           templateUrl: '../templates/modals/loginModal.html',
           controller: 'LoginModalInstanceCtrl',
-          size: 'md',
-          resolve: {
+          // size: 'md',
+          locals: {
             warn: function () {
               return warn;
             }
           }
         });
 
-        modalLogin.result.then(function () {
-          // console.log('Modal alerts success at: ' + new Date());
-        }, function () {
-          // console.log('Modal alerts dismissed at: ' + new Date());
-        })['finally'](function(){
-          modalLogin = undefined;  // <--- This fixes
-        });
+        // modalLogin.result.then(function () {
+        //   // console.log('Modal alerts success at: ' + new Date());
+        // }, function () {
+        //   // console.log('Modal alerts dismissed at: ' + new Date());
+        // })['finally'](function(){
+        //   modalLogin = undefined;  // <--- This fixes
+        // });
       };
       // end login modal
 
-      $scope.toggleFavorite = function(id) {
+      $scope.toggleFavorite = function(id,$event) {
         if(!$scope.isAuthenticated){
-          $scope.showLogin(true);
+          $scope.showLogin(true,$event);
           return;
         }
         var fav;

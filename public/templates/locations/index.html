@@ -1,9 +1,9 @@
-<div  id="container" class="container page center-block clearfix">
-<!-- public/templates/locations/index.html -->
-<!-- style="float: left;padding: 5px;" data-toggle="dropdown" -->
+<div  ng-app="headcount" ng-controller="LocationIndexCtrl" id="container" class="container page center-block clearfix">
+  <!-- public/templates/locations/index.html -->
+  <!-- style="float: left;padding: 5px;" data-toggle="dropdown" -->
   <div class="page-header">
   </div>
-    <div class="row"  style="height:50px;">
+  <div class="row" style="height:50px;">
 
     <!-- <div class="dropdown span1" ng-if="alerts.length > 0" style="top: -10px;float: left;padding: 0px;margin-right:15px;" >
     <button type="button" class="btn  dropdown-toggle" style="height:30px; width:30px;"><span class="glyphicon glyphicon-star yellow" style="font-size: 2.5em;padding: 0px;margin:0px;"></span></button>
@@ -18,62 +18,82 @@
     </div> -->
 
 
-    <div class="btn-group span4" style="float: left; height:50px;"  ><!-- style="float: left;" -->
+    <div class="btn-group span4" style="float: left; height:50px;">
+      <!-- style="float: left;" -->
       <!-- style="height:30px; width:30px;" -->
-      <label ng-if="alerts.length > 0" type="button" class="btn-sm btn-primary"  ng-click="showAlerts()"><span class="glyphicon glyphicon-star yellow" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" title="All" ng-click="LoadView('all')" ><span class="glyphicon glyphicon-th-list" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" title="Favorite" ng-click="LoadView('fav')" ng-if="isAuthenticated"><span class="glyphicon glyphicon-heart red" style="font-size: 1em;padding: 0px;margin:0px;"></label>
-      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" title="Popular" ng-click="LoadView('pop')" ><span class="glyphicon glyphicon-scale" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" title="Hot" ng-click="LoadView('hot')" ><span class="glyphicon glyphicon-fire red" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" title="Cool" ng-click="LoadView('cool')" ><span class="glyphicon glyphicon-sunglasses " style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
+      <label ng-if="alerts.length > 0" type="button" class="btn-sm btn-primary" ng-click="showAlerts($event)">
+        <span class="glyphicon glyphicon-star yellow" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" title="All" ng-click="LoadView('all')">
+        <span class="glyphicon glyphicon-th-list" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" title="Favorite" ng-click="LoadView('fav')" ng-if="isAuthenticated">
+        <span class="glyphicon glyphicon-heart red" style="font-size: 1em;padding: 0px;margin:0px;">
+      </label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" title="Popular" ng-click="LoadView('pop')">
+        <span class="glyphicon glyphicon-scale" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" title="Hot" ng-click="LoadView('hot')">
+        <span class="glyphicon glyphicon-fire red" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" title="Cool" ng-click="LoadView('cool')">
+        <span class="glyphicon glyphicon-sunglasses " style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
       &nbsp; &nbsp;
-      <label type="button" title="login" class="btn-sm btn-primary"  ng-click="loginDialog()"><span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label type="button" title="Set Location" class="btn-sm btn-primary"  ng-click="setLocation()"><span class="glyphicon glyphicon-screenshot" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
-      <label type="button" title="Show Map" class="btn-sm btn-primary"  ng-click="toggleMap()"><span class="glyphicon glyphicon-globe" style="font-size: 1em;padding: 0px;margin:0px;"></span></label>
+      <label type="button" title="login" class="btn-sm btn-primary" ng-click="loginDialog(false,$event)">
+        <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation()">
+        <span class="glyphicon glyphicon-screenshot" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="toggleMap()">
+        <span class="glyphicon glyphicon-globe" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
     </div>
 
 
 
   </div>
   <div class="row" style="height:30px;">
-<div class="span5">
-    <a href="/#">index </a>
-    <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
-      <option value="">-- choose range --</option>
-    </select>
-  </div>
+    <div class="span5">
+      <a href="/#">index </a>
+      <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
+        <option value="">-- choose range --</option>
+      </select>
+    </div>
   </div>
 
   <!-- {{ locs }} -->
   <!-- <ul >  -->
   <div class="row">
-  <div id="resultcontainer" class="span5"> <!-- table-striped -->
-  <table  id="locationtable" class="table table-hover  table-condensed">
-    <tbody>
-  <tr class="row location-entry" ng-repeat="loc in locs" >
-    <td class="col-sm-8" ng-click="showInfo(loc.id)">
-      {{ loc.name }}
-    </td>
-    <td class="col-sm-4" align="right">
-      <button type="button" class="toggle"  ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id)">
-        <span class="glyphicon glyphicon-star green" ></span>
-      </button>
-    	<button type="button" ng-click="toggleFavorite(loc.id)" class="toggle"  stop-click-event >
-    		<span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
-      </button>
-    	<button type="button" ng-click="showInfo(loc.id)" stop-click-event class="toggle ">
-        <img class="info-icon" width="15" height="15">
-      </button>
+    <div id="resultcontainer" class="span5">
+      <!-- table-striped -->
+      <table id="locationtable" class="table table-hover  table-condensed">
+        <tbody>
+          <tr class="row location-entry" ng-repeat="loc in locs">
+            <td class="col-sm-8" ng-click="showInfo(loc.id,$event)">
+              {{ loc.name }}
+            </td>
+            <td class="col-sm-4" align="right">
+              <button type="button" class="toggle" ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id,$event)">
+                <span class="glyphicon glyphicon-star green"></span>
+              </button>
+              <button type="button" ng-click="toggleFavorite(loc.id,$event)" class="toggle" stop-click-event>
+                <span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
+              </button>
+              <button type="button" ng-click="showInfo(loc.id,$event)" stop-click-event class="toggle ">
+                <img class="info-icon" width="15" height="15">
+              </button>
 
-      <button  type="button" class="location-heat" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;
-      </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
-</div>
-</div>
-<!-- </ul>  -->
+              <button type="button" class="location-heat" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- </ul>  -->
 </div>
 <!--
 <footer class="navbar-fixed-bottom navbar-inverse" style="height: 75px;">
