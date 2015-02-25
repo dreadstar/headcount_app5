@@ -13,6 +13,7 @@
 
 # already loaded in application.html.erb
 # require lodash
+
 #= require chroma
 #= require_self
 #= require_tree ./angular

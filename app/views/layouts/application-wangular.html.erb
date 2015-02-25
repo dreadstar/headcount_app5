@@ -4,6 +4,7 @@
 	<head>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 	  <title>HeadcountApp</title>
+
 	 	<% if current_page?('/welcome/index') or current_page?('/') %>
 		<!-- TODO this can be moved to headcount.cj once the realtime code goes to a directive. -->
 	 	<%= javascript_include_tag 'lodash', 'data-turbolinks-track' => true %>
@@ -11,6 +12,7 @@
 		<!-- <%=  realtime_message_handler %> -->
     <!--  realtime_message_console_logger -->
 	  <% end %>
+
 	 <%= #if current_page?('/welcome/index') or current_page?('/') then
 
   	  javascript_include_tag 'application-angular', 'data-turbolinks-track' => true
@@ -21,6 +23,9 @@
 	 <%= stylesheet_link_tag("application") %>
 	 <%= stylesheet_link_tag("custom") %>
 	 <%= stylesheet_link_tag("base") %>
+	<%= stylesheet_link_tag("angular-material/angular-material") %>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js"></script>
 	  <%= csrf_meta_tags %>
 	</head>
 <body unresolved>
@@ -28,16 +33,19 @@
 
   <div layout="column" layout-fill>
     <section layout="row" flex>
-			<!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex="33" md-component-id="left" md-is-locked-open="true">
+			<!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex="33" md-component-id="left" md-is-locked-open>
         <%= render 'layouts/header' %>
 			</md-sidenav> -->
-			<md-content flex class="md-padding" layout-fill >
-				<div layout="column" flex="66" layout-fill >
+			<md-content  flex="33"  class="md-sidenav-left md-whiteframe-z2 md-padding" >
+				<%= render 'layouts/header' %>
+			</md-content>
+			<md-content  flex="66"  class="md-padding md-content-right" layout="column">
+
         <%= render 'layouts/messages' %>
 
           <%= yield %>
             <%= render 'layouts/footer' %>
-					</div>
+				
       </md-content>
     </section>
   </div>

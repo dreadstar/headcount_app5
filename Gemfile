@@ -49,7 +49,7 @@ gem 'haml-rails', '>= 0.3.4'
 gem 'active_model_serializers'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sprockets-rails', '>= 2.1.4'
-# gem 'bootstrap-material-design-sass' # wont install
+# gem 'bootstrap-material-design-sass' # developer not ready
 gem 'bootstrap-material-design'
 gem 'polymer-rails'
 gem 'polymer-core-rails'

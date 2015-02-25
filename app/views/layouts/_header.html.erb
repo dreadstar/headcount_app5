@@ -6,7 +6,8 @@
       <md-list>
         <md-item><%= link_to "Home",         root_path %></md-item>
         <% if user_signed_in? %>
-          <md-item id="fat-menu" class="dropdown">
+          <md-item id="fat-menu" >
+              <!-- class="dropdown" -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
             </a>
