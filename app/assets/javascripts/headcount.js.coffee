@@ -5,12 +5,14 @@
 #= require angular-resource
 # require angular-bootstrap
 #= require angular-animate
-#= require angular-material
+#= require angular-material/angular-material
 #= require angular-devise/devise
 
 #= require angular-socket-io
 #= require angular-socket-io/socket
-#= require lodash
+
+# already loaded in application.html.erb
+# require lodash
 #= require chroma
 #= require_self
 #= require_tree ./angular

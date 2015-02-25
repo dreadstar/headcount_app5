@@ -153,9 +153,8 @@
           controller: 'LocationModalInstanceCtrl',
           // size: 'md',
           locals: {
-            loc: function () {
-              return $scope.locs[$scope.locsIndex[id]];
-            }
+            loc:  $scope.locs[$scope.locsIndex[id]]
+
           }
         })
         ;
@@ -180,13 +179,11 @@
           controller: 'AlertsListModalInstanceCtrl',
           // size: 'md',
           locals: {
-            alertslist: function () {
-              return $scope.alerts;
-            },
-            locationslist: function () {
+            alertslist:  $scope.alerts,
+            locationslist: $scope.locs
               // should return join of locs and invisibleAlertLocations
-              return $scope.locs;
-            }
+
+
           }
         });
 

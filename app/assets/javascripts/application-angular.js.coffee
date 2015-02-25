@@ -1,5 +1,11 @@
-# require jquery
-# require jquery_ujs
+# for bootstrap-material-design
+#= require jquery
+#= require bootstrap-sprockets
+# require bootstrap-material-design-sass/material
+# require bootstrap-material-design-sass/ripples
+#= require bootstrap-material-design
+
+
 # require handlebars
 #= require polymer/webcomponents
 #= require polymer/polymer

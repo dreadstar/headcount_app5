@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="headcount" controller="HomeCtrl">
+<html lang="en">
 
 	<head>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 	  <title>HeadcountApp</title>
-
 	 	<% if current_page?('/welcome/index') or current_page?('/') %>
+		<!-- TODO this can be moved to headcount.cj once the realtime code goes to a directive. -->
 	 	<%= javascript_include_tag 'lodash', 'data-turbolinks-track' => true %>
 	  <%=  realtime_support %>
 		<!-- <%=  realtime_message_handler %> -->
@@ -23,18 +23,24 @@
 	 <%= stylesheet_link_tag("base") %>
 	  <%= csrf_meta_tags %>
 	</head>
-	<body>
+<body unresolved>
 
 
+  <div layout="column" layout-fill>
+    <section layout="row" flex>
+			<!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex="33" md-component-id="left" md-is-locked-open="true">
+        <%= render 'layouts/header' %>
+			</md-sidenav> -->
+			<md-content flex class="md-padding" layout-fill >
+				<div layout="column" flex="66" layout-fill >
+        <%= render 'layouts/messages' %>
 
-		<div id="container" class="container page">
-	  	<%= render 'layouts/header' %>
-	    <%= render 'layouts/messages' %>
+          <%= yield %>
+            <%= render 'layouts/footer' %>
+					</div>
+      </md-content>
+    </section>
+  </div>
 
-  			<%= yield %>
-
-
-	    <%= render 'layouts/footer' %>
-	  </div>
-	</body>
+</body>
 </html>

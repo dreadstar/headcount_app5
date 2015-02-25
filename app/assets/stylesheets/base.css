@@ -1,8 +1,8 @@
 html,
 body {
-margin: 0;
+/*margin: 0;
 padding: 0;
-width:930px;
+width:930px;*/
 }
 
 button {
@@ -21,7 +21,7 @@ appearance: none;
 }
 
 body {
-font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/*font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 line-height: 1.4em;
 background: #eaeaea url('bg.png');
 color: #4d4d4d;
@@ -31,7 +31,7 @@ margin: 0 auto;
 -moz-font-smoothing: antialiased;
 -ms-font-smoothing: antialiased;
 -o-font-smoothing: antialiased;
-font-smoothing: antialiased;
+font-smoothing: antialiased;*/
 }
 
 button,
@@ -198,7 +198,7 @@ padding: 0;
 
 #location-list li.editing .edit {
 display: block;
-width: 506px;
+/*width: 506px;*/
 padding: 13px 17px 12px 17px;
 margin: 0 0 0 43px;
 }
@@ -614,7 +614,7 @@ margin: 130px auto 40px auto;
 
 
 .location-entry{
-  
+
 }
 
 
@@ -646,11 +646,11 @@ margin: 130px auto 40px auto;
   -webkit-animation-name: lightSpeedOut;
   animation-name: lightSpeedOut;
 }
-/* 
+/*
 http://www.yearofmoo.com/2013/12/staggering-animations-in-angularjs.html
 */
 .location-entry.ng-enter-stagger {
-  /* 200ms will be applied between each sucessive enter operation */ 
+  /* 200ms will be applied between each sucessive enter operation */
   -webkit-animation-delay:1s;
   -moz-animation-delay:1s;
   -o-animation-delay:1s;
@@ -664,13 +664,13 @@ http://www.yearofmoo.com/2013/12/staggering-animations-in-angularjs.html
 }
 /*
 .location-entry.ng-leave-stagger {
- 
+
   -webkit-animation-delay:1s;
   -moz-animation-delay:1s;
   -o-animation-delay:1s;
   animation-delay:1s;
 
-  
+
   -webkit-animation-duration:0;
   -moz-animation-duration:0;
   -o-animation-duration:0;
@@ -684,7 +684,7 @@ http://www.yearofmoo.com/2013/12/staggering-animations-in-angularjs.html
   animation: fadeIn 2s;
 
   opacity:0;
-  
+
 }
 .location-entry.ng-leave {
 	/*
@@ -695,8 +695,8 @@ http://www.yearofmoo.com/2013/12/staggering-animations-in-angularjs.html
 */
 opacity: 0;
 line-height: 0px;
-  
-  
+
+
 }
 .location-entry.ng-leave.ng-leave-active {
 	/*
@@ -705,15 +705,15 @@ line-height: 0px;
  	-o-animation: lightSpeedOut 2s;
   animation: lightSpeedOut 2s;
   */
-  
+
   opacity: 0;
   line-height: 0px;
-  
-  
+
+
 }
 .location-entry.ng-enter.ng-enter-active {
-  
-  
+
+
 }
 .location-alert{
 	margin-top: 0px;
@@ -733,5 +733,8 @@ line-height: 0px;
 }
 .dropdown-menu {
     width: 300px !important;
-    
+
 }
+/*
+ *= require bootstrap-material-design
+ */

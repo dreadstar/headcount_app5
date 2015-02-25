@@ -1,33 +1,38 @@
-<ul class="nav pull-right">
+<md-toolbar class="md-theme-indigo">
+   <h1 class="md-toolbar-tools">Headcount</h1>
+</md-toolbar>
+<md-content class="md-padding">
+  <div layout="column">
+      <md-list>
+        <md-item><%= link_to "Home",         root_path %></md-item>
+        <% if user_signed_in? %>
+          <md-item id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+          </md-item>
+            <!-- <md-list class="dropdown-menu"> -->
+              <md-item><%= link_to "Profile", edit_user_registration_path %></md-item>
+              <md-item><%= link_to "Settings", '#' %></md-item>
+              <md-item class="divider"></md-item>
+              <md-item>
+                <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+              </md-item>
+            <!-- </md-list> -->
 
-  <li><%= link_to "Home",         root_path %></li>
-  <% if user_signed_in? %>
-    <li id="fat-menu" class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Account <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li><%= link_to "Profile", edit_user_registration_path %></li>
-        <li><%= link_to "Settings", '#' %></li>
-        <li class="divider"></li>
-        <li>
-          <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-        </li>
-      </ul>
-    </li>
-    <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-  <% else %>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-  <% end %>
-  
-  <% if admin_signed_in? %>
-    <li><%= link_to "Admin Home",         admin_index_path %></li>
-    <li> <%= link_to " Admin Logout", destroy_admin_session_path, :method => :delete %></li>
-  <% else %>
-   <li><%= link_to "Admin Sign in",        new_admin_session_path %></li>
-   <li><%= link_to "Admin registration",        new_admin_registration_path %></li>
+          <md-item> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></md-item>
+        <% else %>
+          <md-item><%= link_to "Sign in", new_user_session_path %></md-item>
+          <md-item><%= link_to "Sign up", new_user_registration_path %></md-item>
+        <% end %>
 
-  <% end %>
-  
-</ul>
+        <% if admin_signed_in? %>
+          <md-item><%= link_to "Admin Home",         admin_index_path %></md-item>
+          <md-item> <%= link_to " Admin Logout", destroy_admin_session_path, :method => :delete %></md-item>
+        <% else %>
+          <md-item><%= link_to "Admin Sign in",        new_admin_session_path %></md-item>
+          <md-item><%= link_to "Admin registration",        new_admin_registration_path %></md-item>
+        <% end %>
+      </md-list>
+    </div>
+</md-content>

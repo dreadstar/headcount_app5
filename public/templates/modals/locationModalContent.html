@@ -2,7 +2,12 @@
 <md-dialog aria-label="List dialog">
   <md-content>
     <div layout="column">
-      <div layout="row"><div flex="20"><button type="button"  class="location-heat-lg" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;</button></div><div flex="80" class="h3">{{loc.name}}</div></div>
+      <div layout="row">
+        <div>
+          <button type="button" class="location-heat-lg" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;</button>
+        </div>
+        <div flex class="h3">{{loc.name}}</div>
+      </div>
       <div layout="row" layout-wrap>
         <div flex="25">website:</div>
         <div flex="75"> {{loc.site_url}}</div>

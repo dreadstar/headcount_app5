@@ -1,8 +1,7 @@
 <div  ng-app="headcount" ng-controller="LocationIndexCtrl" id="container" class="container page center-block clearfix">
   <!-- public/templates/locations/index.html -->
   <!-- style="float: left;padding: 5px;" data-toggle="dropdown" -->
-  <div class="page-header">
-  </div>
+
   <div class="row" style="height:50px;">
 
     <!-- <div class="dropdown span1" ng-if="alerts.length > 0" style="top: -10px;float: left;padding: 0px;margin-right:15px;" >
@@ -18,7 +17,7 @@
     </div> -->
 
 
-    <div class="btn-group span4" style="float: left; height:50px;">
+    <div layout="row" class="btn-group" style="float: left; height:50px;">
       <!-- style="float: left;" -->
       <!-- style="height:30px; width:30px;" -->
       <label ng-if="alerts.length > 0" type="button" class="btn-sm btn-primary" ng-click="showAlerts($event)">
@@ -54,19 +53,19 @@
 
 
   </div>
-  <div class="row" style="height:30px;">
-    <div class="span5">
+  <div  layout="row" style="height:30px;">
+
       <a href="/#">index </a>
       <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
         <option value="">-- choose range --</option>
       </select>
-    </div>
+  
   </div>
 
   <!-- {{ locs }} -->
   <!-- <ul >  -->
-  <div class="row">
-    <div id="resultcontainer" class="span5">
+  <div  layout="row" >
+    <div id="resultcontainer" >
       <!-- table-striped -->
       <table id="locationtable" class="table table-hover  table-condensed">
         <tbody>

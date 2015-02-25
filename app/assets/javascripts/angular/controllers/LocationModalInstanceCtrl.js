@@ -15,11 +15,11 @@ this.headcount.controller('LocationModalInstanceCtrl',['scope','$mdDialog','chro
 
 
   scope.ok = function () {
-    $modalInstance.close();
+    $mdDialog.hide();
   };
 
   scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $mdDialog.hide();
   };
 }]);
 }).call(this);
