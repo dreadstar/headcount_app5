@@ -1,23 +1,24 @@
 <!-- public/templates/modals/alertsList.html -->
-  <div class="modal-header">
-    <div class="row"  >
-      <div class="pull-left" style="padding-left:15px;">
-        <h3 class="modal-title">Alerts</h3>
-      </div>
-
-      <div class="pull-right" style="padding-right:15px;">
-        <button type="button"  class="btn btn-primary" ng-click="ok()">OK</button>
+<md-dialog aria-label="Alerts Dialog">
+  <md-content>
+    <div layout="column">
+      <div layout="row"><div  class="h3">Alerts</div></div>
+      <div layout="row">
+        <md-list>
+          <md-item  ng-repeat="alert in alerts">{{alert.msg}}
+            <br> {{alert.date_start}} - {{alert.date_end}}
+          </md-item>
+        </md-list>
       </div>
     </div>
+  </md-content>
+  <div class="md-actions">
+    <md-button type="button" class="btn btn-primary" ng-click="ok()">OK</md-button>
   </div>
-  <div class="modal-body">
-    <ul class="alerts"  aria-labelledby="dLabel" style="list-style-type: none;">
-      <li class="alert-li" ng-repeat="alert in alerts">
-          <alert class="location-alert" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-      </li>
-    </ul>
+</md-dialog>
 
-  </div>
-  <div class="modal-footer">
-
-  </div>
+<!-- <ul class="alerts"  aria-labelledby="dLabel" style="list-style-type: none;">
+  <li class="alert-li" ng-repeat="alert in alerts">
+      <alert class="location-alert" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </li>
+</ul> -->

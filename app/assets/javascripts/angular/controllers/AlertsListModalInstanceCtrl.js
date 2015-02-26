@@ -1,7 +1,7 @@
 
 
 (function() {
-this.headcount.controller('AlertsListModalInstanceCtrl',['scope','$mdDialog', 'alertslist', 'locationsList',
+this.headcount.controller('AlertsListModalInstanceCtrl',['scope','$mdDialog', 'alertsList', 'locationsList',
 function (scope, $mdDialog, alertsList,locationsList) {
   console.log("alerts modal",alertsList,locationsList);
 
@@ -9,6 +9,7 @@ function (scope, $mdDialog, alertsList,locationsList) {
   // _.forEach(alertsList, function(alert){
   //   alert.location=_.findOne
   // });
+
   scope.alerts = alertsList;
 
   scope.closeAlert = function(index) {
@@ -16,11 +17,11 @@ function (scope, $mdDialog, alertsList,locationsList) {
   };
 
   scope.ok = function () {
-    $mdDialog.close();
+    $mdDialog.hide();
   };
 
   scope.cancel = function () {
-    $mdDialog.dismiss('cancel');
+    $mdDialog.hide();
   };
 }]);
 }).call(this);

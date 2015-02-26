@@ -8,7 +8,10 @@
     "angular-animate": "latest",
     "animate.css": "latest",
     "fontawesome": "latest",
-    "angular-material": "latest"
+    "angular-material": "latest",
+    "core-icons": "polymer/core-icons#~0.5.5",
+    "core-icon-button": "polymer/core-icon-button#~0.5.5",
+    "paper-icon-button": "polymer/paper-icon-button#~0.5.5"
   },
   "resolutions": {
     "angular": "~1.3.13"

@@ -1,4 +1,7 @@
-
+/*
+ *= require bootstrap-material-design
+ *
+ */
 
 #new-location,
 .edit {
@@ -37,8 +40,8 @@ box-shadow: none;
 
 .location-heat {
 /*	float: left; */
-	width: 15px;
-	height: 15px;
+	width: 25px;
+	height: 25px;
 	border: 1px;
 	border-color: #000000;
 	background-color: #0000ff;
@@ -193,4 +196,44 @@ line-height: 0px;
 
 .table-striped > tbody > tr.location-entry.ng-enter.ng-enter-active:nth-child(odd) > td, .table-striped > tbody > tr.location-entry.ng-enter.ng-enter-active:nth-child(odd) > th {
    background-color: #F9F9F9;
+}
+
+
+
+
+
+
+
+
+
+
+/*for polymer/paper paper-icon-button*/
+paper-icon-button {
+  vertical-align: middle;
+}
+
+paper-icon-button.hover:hover {
+  background: #eee;
+  border-radius: 50%;
+}
+
+paper-icon-button.red {
+  color: #fe774d;
+}
+
+paper-icon-button.blueRipple::shadow #ripple {
+  color: #4285f4;
+}
+
+paper-icon-button.huge::shadow #icon {
+  width: 100px;
+  height: 100px;
+}
+
+/*      core-selector paper-icon-button:not([active])::shadow core-icon {
+  color: #c9c9c9;
+}
+*/
+paper-icon-button.custom {
+  color: #a9edff;
 }

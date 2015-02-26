@@ -51,6 +51,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sprockets-rails', '>= 2.1.4'
 # gem 'bootstrap-material-design-sass' # developer not ready
 gem 'bootstrap-material-design'
+gem 'material_design_icons_rails', '~> 1.0.0'
 gem 'polymer-rails'
 gem 'polymer-core-rails'
 gem 'polymer-paper-rails'

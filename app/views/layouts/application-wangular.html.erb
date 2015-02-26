@@ -2,7 +2,8 @@
 <html lang="en">
 
 	<head>
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" /> -->
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 	  <title>HeadcountApp</title>
 
 	 	<% if current_page?('/welcome/index') or current_page?('/') %>
@@ -19,22 +20,24 @@
   	#end
   	%>
 
-
+	<!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js"></script> -->
 	 <%= stylesheet_link_tag("application") %>
 	 <%= stylesheet_link_tag("custom") %>
 	 <%= stylesheet_link_tag("base") %>
+	<!-- <%= html_import_tag 'application'%> -->
+	<!-- < stylesheet_link_tag("bootstrap-material-design") > -->
 	<%= stylesheet_link_tag("angular-material/angular-material") %>
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js"></script>
+
 	  <%= csrf_meta_tags %>
 	</head>
-<body unresolved>
+<body >
 
 
   <div layout="column" layout-fill>
     <section layout="row" flex>
 			<!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex="33" md-component-id="left" md-is-locked-open>
-        <%= render 'layouts/header' %>
+        <= render 'layouts/header' >
 			</md-sidenav> -->
 			<md-content  flex="33"  class="md-sidenav-left md-whiteframe-z2 md-padding" >
 				<%= render 'layouts/header' %>
@@ -45,7 +48,7 @@
 
           <%= yield %>
             <%= render 'layouts/footer' %>
-				
+
       </md-content>
     </section>
   </div>

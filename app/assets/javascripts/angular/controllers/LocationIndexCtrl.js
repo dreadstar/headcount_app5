@@ -170,18 +170,18 @@
 
       //show the modal for starred alerts
       $scope.showAlerts = function ($event) {
-        console.log("opening alerts modal",$scope.alerts );
+        console.log("opening alerts modal",$scope.alerts ,$event);
         var parentEl = angular.element(document.body);
         var modalAlerts = $mdDialog.show({
           parent: parentEl,
           targetEvent: $event,
-          template: '../templates/modals/alertsList.html',
+          templateUrl: '../templates/modals/alertsList.html',
           controller: 'AlertsListModalInstanceCtrl',
           // size: 'md',
           locals: {
-            alertslist:  $scope.alerts,
-            locationslist: $scope.locs
-              // should return join of locs and invisibleAlertLocations
+            alertsList:  $scope.alerts,
+            locationsList: $scope.locs
+              // TODO should return join of locs and invisibleAlertLocations
 
 
           }
@@ -202,16 +202,14 @@
         console.log("opening login modal",warn );
         var parentEl = angular.element(document.body);
 
-        var modalLogin = $mdDialog.open({
+        var modalLogin = $mdDialog.show({
           parent: parentEl,
           targetEvent: $event,
           templateUrl: '../templates/modals/loginModal.html',
           controller: 'LoginModalInstanceCtrl',
           // size: 'md',
           locals: {
-            warn: function () {
-              return warn;
-            }
+            warn:  warn
           }
         });
 
@@ -353,7 +351,18 @@ return {
   addClass : function(element, className, done) {},
   removeClass : function(element, className, done) {}
 };
-});
+})
+.directive('stopEvent', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            element.bind('click', function (e) {
+                e.stopPropagation();
+            });
+        }
+    };
+ });
+;
 
 
 }).call(this);

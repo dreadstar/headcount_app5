@@ -2,11 +2,11 @@
 #= require jquery
 #= require bootstrap-sprockets
 
-# require bootstrap-material-design
+#= require bootstrap-material-design
 
 
 # require handlebars
-# require polymer/webcomponents
+# require webcomponentsjs/webcomponents
 # require polymer/polymer
 # require core-ajax/core-ajax
 # require core-input/core-input

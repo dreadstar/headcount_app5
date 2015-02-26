@@ -41,7 +41,7 @@
         <span class="glyphicon glyphicon-sunglasses " style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
       &nbsp; &nbsp;
-      <label type="button" title="login" class="btn-sm btn-primary" ng-click="loginDialog(false,$event)">
+      <label type="button" title="login" class="btn-sm btn-primary" ng-click="showLogin(false,$event)">
         <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
       <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation()">
@@ -74,7 +74,7 @@
       <div flex>
       <table  class="table table-hover  table-condensed">
         <tbody>
-          <tr class="row location-entry" ng-repeat="loc in locs" ng-click="showInfo(loc.id,$event)">
+          <tr class="row location-entry" ng-repeat="loc in locs" ng-click="showInfo(loc.id,$event)" stop-event>
             <td  >
                 <!-- ng-click="showInfo(loc.id,$event)" -->
                 <!-- class="col-sm-8" -->
@@ -82,20 +82,21 @@
             </td>
             <td align="right">
                 <!-- class="col-sm-4"  -->
-              <button type="button" class="toggle" ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id,$event)"  stop-click-event>
-                <span class="glyphicon glyphicon-star green"></span>
-              </button>
+
+                <span class="mdi-action-grade green" ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id,$event)"  stop-event></span>
+
           </td>
           <td align="right">
-              <button type="button" ng-click="toggleFavorite(loc.id,$event)" class="toggle" stop-click-event>
-                  <md-icon md-font-icon="favorite" alt="Favorite "></md-icon>
-                  <span class="glyphicon glyphicon-heart" ng-class="{'favorite': loc.isFavorite}"></span>
-              </button>
+
+                  <!-- <md-icon md-font-icon="favorite" alt="Favorite " ng-class="{'favorite': loc.isFavorite}"></md-icon> -->
+                  <span ng-click="toggleFavorite(loc.id,$event)" class="mdi-action-favorite" ng-class="{'favorite': loc.isFavorite}"  stop-event></span>
+
           </td>
           <td align="right">
-              <button type="button" ng-click="showInfo(loc.id,$event)" stop-click-event class="toggle ">
-                <img class="info-icon" width="15" height="15">
-              </button>
+
+             
+                  <span class="mdi-action-info" style="height:15px;width:15px;"  ng-click="showInfo(loc.id,$event)" stop-event></span>
+
           </td>
           <td align="right">
               <button type="button" class="location-heat" style="background-color: {{ getcolor(loc.current_state/loc.max_cap) }}">&nbsp;
