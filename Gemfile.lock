@@ -108,8 +108,6 @@ GEM
     polyglot (0.3.5)
     polymer-core-rails (0.2.5)
       polymer-rails (~> 0.2.2)
-    polymer-paper-rails (0.2.5)
-      polymer-rails (~> 0.2.5)
     polymer-rails (0.2.8)
       nokogiri (~> 1.6)
       nokogumbo (~> 1.1)
@@ -213,7 +211,6 @@ DEPENDENCIES
   mysql2
   pg
   polymer-core-rails
-  polymer-paper-rails
   polymer-rails
   rails (= 4.1.4)
   rails-assets-angular-devise!
