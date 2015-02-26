@@ -208,7 +208,7 @@ line-height: 0px;
 
 
 /*for polymer/paper paper-icon-button*/
-paper-icon-button {
+/*paper-icon-button {
   vertical-align: middle;
 }
 
@@ -228,12 +228,12 @@ paper-icon-button.blueRipple::shadow #ripple {
 paper-icon-button.huge::shadow #icon {
   width: 100px;
   height: 100px;
-}
+}*/
 
 /*      core-selector paper-icon-button:not([active])::shadow core-icon {
   color: #c9c9c9;
 }
 */
-paper-icon-button.custom {
+/*paper-icon-button.custom {
   color: #a9edff;
-}
+}*/
