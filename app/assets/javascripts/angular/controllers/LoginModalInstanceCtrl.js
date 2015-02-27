@@ -15,6 +15,7 @@
 
 
       scope.ok = function() {
+          console.log('pre login check',scope.loginForm);
         Auth.login(scope.loginForm).then(function(user) {
           console.log('login good',user); // => {id: 1, ect: '...'}
         }, function(error) {

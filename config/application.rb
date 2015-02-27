@@ -23,6 +23,9 @@ module HeadcountApp5
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.sass
     # config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+    config.to_prepare do
+        DeviseController.respond_to :html, :json
+    end
 
   end
 

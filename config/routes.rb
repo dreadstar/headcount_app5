@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   devise_scope :user do
+
     get '/users/sign_in',to: 'devise/sessions#new'
     get '/users/sign_out',to: 'devise/sessions#destroy'
   end
   devise_scope :admins do
+
     # @request.env["devise.mapping"] = Devise.mappings[:admin]
     get '/admins/sign_in'
     # get '/admins/sign_out',to: 'devise/sessions#destroy'

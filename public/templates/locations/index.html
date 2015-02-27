@@ -83,19 +83,19 @@
             <td align="right">
                 <!-- class="col-sm-4"  -->
 
-                <span class="mdi-action-grade green" ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id,$event)"  stop-event></span>
+                <i class="mdi-action-grade green list_icons" ng-if="loc.alerts.length > 0" ng-click="showInfo(loc.id,$event)"  stop-event></i>
 
           </td>
           <td align="right">
 
                   <!-- <md-icon md-font-icon="favorite" alt="Favorite " ng-class="{'favorite': loc.isFavorite}"></md-icon> -->
-                  <span ng-click="toggleFavorite(loc.id,$event)" class="mdi-action-favorite" ng-class="{'favorite': loc.isFavorite}"  stop-event></span>
+                  <i ng-click="toggleFavorite(loc.id,$event)" class="mdi-action-favorite list_icons" ng-class="{'favorite': loc.isFavorite}"  stop-event></i>
 
           </td>
           <td align="right">
 
-             
-                  <span class="mdi-action-info" style="height:15px;width:15px;"  ng-click="showInfo(loc.id,$event)" stop-event></span>
+
+                  <i class="mdi-action-info list_icons"  ng-click="showInfo(loc.id,$event)" stop-event></i>
 
           </td>
           <td align="right">

@@ -40,6 +40,7 @@ box-shadow: none;
 
 .location-heat {
 /*	float: left; */
+
 	width: 25px;
 	height: 25px;
 	border: 1px;
@@ -74,16 +75,17 @@ box-shadow: none;
 }
 
 .info-icon {
-	width: 15px;
-	height: 15px;
+
 	margin: 0px;
-	border: 1px;
+	/*border: 1px;*/
 	border-color: #000000;
 	padding: 0px;
 
 }
 
-
+.list_icons{
+    font-size: 23pt;
+}
 
 
 
