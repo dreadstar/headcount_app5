@@ -46,7 +46,7 @@ this.headcount
 			var locqry;
 			view = typeof view !== 'undefined' ? view : 'all';
 
-			console.log('start LoadView '+ view);
+			console.log('start LoadView service '+ view);
 			switch(view) {
 				case "all":
 					locqry='./locations.json';

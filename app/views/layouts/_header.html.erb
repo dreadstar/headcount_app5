@@ -2,38 +2,26 @@
    <h1 class="md-toolbar-tools">Headcount</h1>
 </md-toolbar>
 <md-content class="md-padding">
-  <div layout="column">
-      <md-list>
-        <md-item><%= link_to "Home",         root_path %></md-item>
+    <div >
+        <div class="btn-group-vertical">
+        <a href="<%= url_for  root_path %>" class="btn btn-default">Home</a>
         <% if user_signed_in? %>
-          <md-item >
-              <!-- class="dropdown" -->
-            <a href="#">
-              Account <b class="caret"></b>
-            </a>
-          </md-item>
-            <!-- <md-list class="dropdown-menu"> -->
-              <md-item><%= link_to "Profile", edit_user_registration_path %></md-item>
-              <md-item><%= link_to "Settings", '#' %></md-item>
-              <md-item class="divider"></md-item>
-              <md-item>
-                <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-              </md-item>
-            <!-- </md-list> -->
-
-          <md-item> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></md-item>
+            <a href="<%= url_for  edit_user_registration_path %>" class="btn btn-default">Profile</a>
+            <a href="/users/sign_out" class="btn btn-default">Logout</a>
         <% else %>
-          <md-item><%= link_to "Sign in", new_user_session_path %></md-item>
-          <md-item><%= link_to "Sign up", new_user_registration_path %></md-item>
+            <a href="<%= url_for  new_user_session_path %>" class="btn btn-default">Sign in</a>
+            <a href="<%= url_for  new_user_registration_path %>" class="btn btn-default">Sign up</a>
         <% end %>
 
         <% if admin_signed_in? %>
-          <md-item><%= link_to "Admin Home",         admin_index_path %></md-item>
-          <md-item> <%= link_to " Admin Logout", destroy_admin_session_path, :method => :delete %></md-item>
+            <a href="<%= url_for  admin_index_path %>" class="btn btn-default">Admin Home</a>
+            <a href="/admins/sign_out" class="btn btn-default">Admin Logout</a>
         <% else %>
-          <md-item><%= link_to "Admin Sign in",        new_admin_session_path %></md-item>
-          <md-item><%= link_to "Admin registration",        new_admin_registration_path %></md-item>
+            <a href="<%= url_for  new_admin_session_path %>" class="btn btn-default">Button</a>
+            <a href="<%= url_for  new_admin_registration_path %>" class="btn btn-default">Button</a>
         <% end %>
-      </md-list>
+
+        </div>
+
     </div>
 </md-content>

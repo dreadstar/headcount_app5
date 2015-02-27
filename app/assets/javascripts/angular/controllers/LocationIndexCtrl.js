@@ -7,16 +7,7 @@
       var favorites=[];
       var locationAlerts=[];
       $scope.isAuthenticated = Auth.isAuthenticated();
-      Auth.currentUser().then(function(user) {
-        $scope.isAuthenticated = Auth.isAuthenticated();
-        // User was logged in, or Devise returned
-        // previously authenticated session.
-        console.log('authenticated',user); // => {id: 1, ect: '...'}
-      }, function(error) {
-        console.log('not authenticated',error);
-        $scope.isAuthenticated = Auth.isAuthenticated();
-        // unauthenticated error
-      });
+
       $scope.locs = [];
       $scope.locsIndex = [];
       $scope.favorites = [];
@@ -107,7 +98,7 @@
 
       var _loadFavorites = function(){
         var deferred = $q.defer();
-        if($scope.isAuthenticated){
+        if($scope.isAuthenticated()){
           favorites = UserFavorite.query(function() {
 
             console.log('_loadFavorites start',favorites);
@@ -131,8 +122,31 @@
         return deferred.promise;
       };
 
+      var _checkAuth= function(){
+          console.log('_checkAuth start');
+          var deferred = $q.defer();
+
+          Auth.currentUser().then(function(user) {
+
+            $scope.isAuthenticated = Auth.isAuthenticated;
+            // User was logged in, or Devise returned
+            // previously authenticated session.
+            console.log('authenticated',user); // => {id: 1, ect: '...'}
+            deferred.resolve($scope.isAuthenticated());
+
+          }, function(error) {
+
+            console.log('not authenticated',error);
+            $scope.isAuthenticated = Auth.isAuthenticated;
+            deferred.resolve($scope.isAuthenticated());
+            // unauthenticated error
+
+          });
+          return deferred.promise;
+      };
+
       //initial load all default
-      _LoadView().then(_loadFavorites).then(_loadAlerts);
+      _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
 
       $scope.LoadView = function(view){
         _LoadView(view).then(_loadFavorites).then(_updateAlerts);

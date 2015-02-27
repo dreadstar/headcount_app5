@@ -4,11 +4,16 @@
     <div layout="column">
       <div layout="row"><div  class="h3">Alerts</div></div>
       <div layout="row">
-        <md-list>
+        <!-- <md-list>
           <md-item  ng-repeat="alert in alerts">{{alert.msg}}
             <br> {{alert.date_start}} - {{alert.date_end}}
           </md-item>
-        </md-list>
+        </md-list> -->
+        <ul class="alerts"  aria-labelledby="dLabel" style="list-style-type: none;">
+          <li class="alert-li" ng-repeat="alert in alerts">
+              <alert class="location-alert" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+          </li>
+        </ul> 
       </div>
     </div>
   </md-content>
