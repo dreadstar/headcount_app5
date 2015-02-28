@@ -21,4 +21,3 @@
 # require bootstrap-sprockets
 
 #= require headcount
-# require services

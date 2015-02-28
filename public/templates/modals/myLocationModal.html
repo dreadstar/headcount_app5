@@ -1,0 +1,50 @@
+<md-dialog aria-label="Location Settings">
+  <md-content>
+    <div layout="column">
+      <div layout="row">
+        <div class="h3">Location Settings</div>
+      </div>
+
+
+      <div>
+        <div class="form-group">
+          <label for="inputAddress" class="col-lg-2 control-label">Address</label>
+          <div class="col-lg-10">
+            <input class="form-control" id="inputAddress" placeholder="Address"  name="address" ng-model="locationForm.email">
+          </div>
+        </div>
+      </div>
+      <div layout="row"  layout-align="center center"><div>or</div></div>
+      <div>
+        <div class="form-group">
+          <label for="inputZip" class="col-lg-2 control-label">Zip/Postal Code</label>
+          <div class="col-lg-10">
+            <input class="form-control" id="inputZip" placeholder="zip or postal code" type="text"  name="zip" ng-model="locationForm.zip">
+          </div>
+        </div>
+      </div>
+      <div layout="row"  layout-align="center center"><div>or</div></div>
+      <div>
+        <div class="form-group">
+          <label for="inputLong" class="col-lg-2 control-label">Longitude </label>
+          <div class="col-lg-10">
+            <input class="form-control" id="inputLong" placeholder="longitude" type="text"  name="long" ng-model="locationForm.long">
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form-group">
+          <label for="inputLat" class="col-lg-2 control-label">Longitude </label>
+          <div class="col-lg-10">
+            <input class="form-control" id="inputLat" placeholder="longitude" type="text"  name="long" ng-model="locationForm.lat">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </md-content>
+  <div class="md-actions">
+    <md-button type="button" class="btn btn-primary" ng-click="ok()">Login</md-button>
+    <md-button type="button" class="btn btn-default" ng-click="cancel()">Cancel</md-button>
+  </div>
+</md-dialog>

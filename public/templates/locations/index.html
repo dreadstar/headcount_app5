@@ -6,19 +6,7 @@
   <div  layout="column" layout-align="start center" >
   <div layout="row" >
 
-    <!-- <div class="dropdown span1" ng-if="alerts.length > 0" style="top: -10px;float: left;padding: 0px;margin-right:15px;" >
-    <button type="button" class="btn  dropdown-toggle" style="height:30px; width:30px;"><span class="glyphicon glyphicon-star yellow" style="font-size: 2.5em;padding: 0px;margin:0px;"></span></button>
 
-    <ul class="dropdown-menu alerts" role="menu" aria-labelledby="dLabel">
-      <li class="alert-li">
-          <alert ng-repeat="alert in alerts" class="location-alert" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-      </li>
-    </ul>
-
-
-    </div> -->
-
-    <!-- class="btn-group" style="float: left; height:50px;" -->
     <div flex>
       <!-- style="float: left;" -->
       <!-- style="height:30px; width:30px;" -->
@@ -28,7 +16,7 @@
       <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" title="All" ng-click="LoadView('all')">
         <span class="glyphicon glyphicon-th-list" style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
-      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" title="Favorite" ng-click="LoadView('fav')" ng-if="isAuthenticated">
+      <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" title="Favorite" ng-click="LoadView('fav')" ng-if="isAuthenticated()">
         <span class="glyphicon glyphicon-heart red" style="font-size: 1em;padding: 0px;margin:0px;">
       </label>
       <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'pop'" title="Popular" ng-click="LoadView('pop')">
@@ -41,13 +29,16 @@
         <span class="glyphicon glyphicon-sunglasses " style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
       &nbsp; &nbsp;
-      <label type="button" title="login" class="btn-sm btn-primary" ng-click="showLogin(false,$event)">
+      <label type="button" title="logout" class="btn-sm btn-default" ng-click="showLogout($event)"  ng-if="isAuthenticated()">
         <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
-      <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation()">
+      <label type="button" title="login" class="btn-sm btn-primary" ng-click="showLogin(false,$event)"  ng-if="isAuthenticated() === false">
+        <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+      </label>
+      <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation($event)">
         <span class="glyphicon glyphicon-screenshot" style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
-      <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="toggleMap()">
+      <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="toggleMap($event)">
         <span class="glyphicon glyphicon-globe" style="font-size: 1em;padding: 0px;margin:0px;"></span>
       </label>
     </div>

@@ -6,12 +6,13 @@
 
       var favorites=[];
       var locationAlerts=[];
-      $scope.isAuthenticated = Auth.isAuthenticated();
+      $scope.isAuthenticated = Auth.isAuthenticated;
 
       $scope.locs = [];
       $scope.locsIndex = [];
       $scope.favorites = [];
       $scope.alerts = [];
+      $scope.view='all';
       // color setup
       chroma.setColors(['black', 'blue', 'red']);
       $scope.getcolor=chroma.getHeatColor;
@@ -32,13 +33,19 @@
       ];
       $scope.myRange = $scope.search_ranges[3];
       var invisibleAlertLocations=[];
+      var myLocation = {};
+      myLocation.address = '';
+      myLocation.zip = '';
+      myLocation.long = '';
+      myLocation.lat = '';
+      myLocation.ip = '';
 
 
       // loading data all|fav|pop|hot|cool
       var _LoadView = function(view){
         var deferred = $q.defer();
         var locqry;
-        view = typeof view !== 'undefined' ? view : 'all';
+        view = typeof view !== 'undefined' ? view : $scope.view;
         $scope.locs=[];
         $scope.locsIndex=[];
         $scope.view=view;
@@ -227,18 +234,54 @@
           }
         });
 
-        // modalLogin.result.then(function () {
-        //   // console.log('Modal alerts success at: ' + new Date());
-        // }, function () {
-        //   // console.log('Modal alerts dismissed at: ' + new Date());
-        // })['finally'](function(){
-        //   modalLogin = undefined;  // <--- This fixes
-        // });
       };
       // end login modal
 
+      //show the modal for logout
+      $scope.showLogout =function ($event) {
+        console.log("opening logout modal" );
+        var parentEl = angular.element(document.body);
+        if ($scope.view =='fav') $scope.view='all';
+        Auth.logout()
+            .then(_LoadView)
+            .then(_loadFavorites)
+            .then(_loadAlerts);
+
+        // var modalLogin = $mdDialog.show({
+        //   parent: parentEl,
+        //   targetEvent: $event,
+        //   templateUrl: '../templates/modals/loginModal.html',
+        //   controller: 'LoginModalInstanceCtrl',
+        //   locals: {
+        //     warn:  warn
+        //   }
+        // });
+
+      };
+      // end logout modal
+
+      //show the modal for mylocation
+      $scope.setLocation =function ($event) {
+        console.log("opening myLocation modal",myLocation );
+        var parentEl = angular.element(document.body);
+
+        var modalLogin = $mdDialog.show({
+          parent: parentEl,
+          targetEvent: $event,
+          templateUrl: '../templates/modals/myLocationModal.html',
+          controller: 'myLocationModalInstanceCtrl',
+          // size: 'md',
+          locals: {
+            myLocation:  myLocation
+          }
+        });
+
+
+      };
+      // end mylocation modal
+
       $scope.toggleFavorite = function(id,$event) {
-        if(!$scope.isAuthenticated){
+        if(!$scope.isAuthenticated()){
           $scope.showLogin(true,$event);
           return;
         }
@@ -376,7 +419,7 @@ return {
         }
     };
  });
-;
+
 
 
 }).call(this);
