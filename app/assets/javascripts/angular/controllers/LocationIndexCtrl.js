@@ -45,7 +45,8 @@
       var _LoadView = function(view){
         var deferred = $q.defer();
         var locqry;
-        view = typeof view !== 'undefined' ? view : $scope.view;
+        // handle when we have logout or login chaining
+        view = typeof view == 'string'   ? view : $scope.view;
         $scope.locs=[];
         $scope.locsIndex=[];
         $scope.view=view;
@@ -156,7 +157,7 @@
       _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
 
       $scope.LoadView = function(view){
-        _LoadView(view).then(_loadFavorites).then(_updateAlerts);
+        _LoadView(view).then(_checkAuth).then(_loadFavorites).then(_updateAlerts);
       };
 
 
@@ -242,6 +243,7 @@
         console.log("opening logout modal" );
         var parentEl = angular.element(document.body);
         if ($scope.view =='fav') $scope.view='all';
+        $scope.alerts=[];
         Auth.logout()
             .then(_LoadView)
             .then(_loadFavorites)
@@ -328,6 +330,15 @@
 
         }
       };
+
+      // authentication stuff
+      $scope.$on('devise:login', function(event, currentUser) {
+          _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
+      });
+
+      $scope.$on('devise:new-session', function(event, currentUser) {
+          _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
+      });
       // realtime stuff
       if(socket.ready()){
         socket.on('realtime_msg', function(data) {
