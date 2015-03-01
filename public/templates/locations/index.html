@@ -14,7 +14,7 @@
           <span class="glyphicon glyphicon-star yellow" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label class="btn-sm btn-primary" ng-model="view" btn-radio="'all'" title="All" ng-click="LoadView('all')">
-          <span class="glyphicon glyphicon-th-list" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-action-list" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'fav'" title="Favorite" ng-click="LoadView('fav')" ng-if="isAuthenticated()">
           <span class="glyphicon glyphicon-heart red" style="font-size: 1em;padding: 0px;margin:0px;">
@@ -23,23 +23,23 @@
           <span class="glyphicon glyphicon-scale" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'hot'" title="Hot" ng-click="LoadView('hot')">
-          <span class="glyphicon glyphicon-fire red" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-social-whatshot red" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label class="btn-sm  btn-primary" ng-model="view" btn-radio="'cool'" title="Cool" ng-click="LoadView('cool')">
           <span class="glyphicon glyphicon-sunglasses " style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         &nbsp; &nbsp;
         <label type="button" title="logout" class="btn-sm btn-default" ng-click="showLogout($event)" ng-if="isAuthenticated()">
-          <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-action-account-circle" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label type="button" title="login" class="btn-sm btn-primary" ng-click="showLogin(false,$event)" ng-if="isAuthenticated() === false">
-          <span class="glyphicon glyphicon-log-in" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-action-account-circle" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation($event)">
-          <span class="glyphicon glyphicon-screenshot" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-maps-my-location" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
         <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="showMap= !showMap">
-          <span class="glyphicon glyphicon-globe" style="font-size: 1em;padding: 0px;margin:0px;"></span>
+          <span class="mdi-social-public" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
       </div>
 
