@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
 	if params[:userlocation].present?
-		@locations = Location.near(params[:userlocation], params[:distance] || 10, order: :distance)
+		@locations = Location.near(params[:userlocation], params[:distance] || 10, order: 'distance')
     else
     	@locations = Location.all
 	end
@@ -17,7 +17,11 @@ class LocationsController < ApplicationController
   end
 
   def fav
-    @locations = Location.where("id in (select location_id from user_location_favs where user_id = :user_id) " ,{user_id: current_user.id})
+	if params[:userlocation].present?
+		@locations = Location.where("id in (select location_id from user_location_favs where user_id = :user_id) " ,{user_id: current_user.id}).near(params[:userlocation], params[:distance] || 10, order: :distance)
+    else
+    	@locations = Location.where("id in (select location_id from user_location_favs where user_id = :user_id) " ,{user_id: current_user.id})
+	end
     respond_to do |format|
       format.html # index.html
       format.json { render json: @locations, each_serializer: LocationSerializer }

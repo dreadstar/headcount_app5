@@ -15,21 +15,25 @@
       $scope.view='all';
       $scope.showMap= false;
       // color setup
-      chroma.setColors(['black', 'blue', 'red','yellow']);
+      chroma.setColors(['black', 'blue', 'red']);
       $scope.getcolor=chroma.getHeatColor;
       $scope.search_ranges = [
         {
           val: 0,
-          txt: '1 mile'
+          txt: '1 mile',
+          distance: 1
         }, {
           val: 1,
-          txt: '5 miles'
+          txt: '5 miles',
+          distance: 5
         }, {
           val: 2,
-          txt: '10 miles'
+          txt: '10 miles',
+          distance: 10
         }, {
           val: 3,
-          txt: 'all'
+          txt: 'all',
+          distance: -1
         }
       ];
       $scope.myRange = $scope.search_ranges[3];
@@ -54,7 +58,7 @@
         $scope.locsIndex=[];
         $scope.view=view;
         console.log('start LoadView '+ view);
-        Locations.viewList(view)
+        Locations.viewList(view,myLocation,$scope.myRange.distance)
           .then(function(locs){
             $scope.locs=locs;
             _.map($scope.locs, function(loc,i){

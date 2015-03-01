@@ -10,19 +10,19 @@
         <div class="form-group">
           <label for="inputAddress" class="col-lg-2 control-label">Address</label>
           <div class="col-lg-10">
-            <input class="form-control" id="inputAddress" placeholder="Address"  name="address" ng-model="locationForm.email">
+            <input class="form-control" id="inputAddress" placeholder="Address"  name="address" ng-model="locationForm.address">
           </div>
         </div>
       </div>
       <div layout="row"  layout-align="center center"><div>or</div></div>
-      <div>
+      <!-- <div>
         <div class="form-group">
           <label for="inputZip" class="col-lg-2 control-label">Zip/Postal Code</label>
           <div class="col-lg-10">
             <input class="form-control" id="inputZip" placeholder="zip or postal code" type="text"  name="zip" ng-model="locationForm.zip">
           </div>
         </div>
-      </div>
+      </div> -->
       <div layout="row"  layout-align="center center"><div>or</div></div>
       <div>
         <div class="form-group">
@@ -44,7 +44,7 @@
     </div>
   </md-content>
   <div class="md-actions">
-    <md-button type="button" class="btn btn-primary" ng-click="ok()">Login</md-button>
+    <md-button type="button" class="btn btn-primary" ng-click="ok()">Set</md-button>
     <md-button type="button" class="btn btn-default" ng-click="cancel()">Cancel</md-button>
   </div>
 </md-dialog>

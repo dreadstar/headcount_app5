@@ -41,12 +41,14 @@ this.headcount
 
 }])
 .factory('Locations', ['$resource','$q','$http','lodash',function($resource,$q,$http,_){
-	  var _viewList= function(view){
+	  var _viewList= function(view,userLocation,range){
 			var deferred = $q.defer();
 			var locqry;
+			var userloc;
+			var getRequest={method: "GET"};
 			view = typeof view !== 'undefined' ? view : 'all';
 
-			console.log('start LoadView service '+ view);
+			console.log('start LoadView service '+ view, userLocation, range);
 			switch(view) {
 				case "all":
 					locqry='./locations.json';
@@ -66,11 +68,21 @@ this.headcount
 				default:
 					console.log("unmatched view",view);
 			}
+			getRequest.url=locqry;
+			if(range != -1){
+				if(userLocation.long && userLocation.lat){
+					userloc=[userLocation.long,
+						userLocation.lat];
+				}else if (userLocation.address){
+					userloc=userLocation.address;
+				}
+				getRequest.params={userlocation: userloc,
+					distance:range};
 
-			$http.get(locqry).success(function(data) {
+			}
+			$http(getRequest).success(function(data) {
 
 				var locs = data.locations;
-
 
 				switch(view) {
 					case "all":
