@@ -1,8 +1,8 @@
 (function() {
 
   this.headcount.controller('LocationIndexCtrl', [
-    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$mdDialog', 'lodash','Auth','$q','chroma','Locations',
-    function($scope, $location, socket, UserFavorite,LocationAlert, $mdDialog,_ ,Auth,$q,chroma,Locations) {
+    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$mdDialog', 'lodash','Auth','$q','chroma','Locations','$mdSidenav','$mdToast',
+    function($scope, $location, socket, UserFavorite,LocationAlert, $mdDialog,_ ,Auth,$q,chroma,Locations, $mdSidenav,$mdToast) {
 
       var favorites=[];
       var locationAlerts=[];
@@ -13,8 +13,9 @@
       $scope.favorites = [];
       $scope.alerts = [];
       $scope.view='all';
+      $scope.showMap= false;
       // color setup
-      chroma.setColors(['black', 'blue', 'red']);
+      chroma.setColors(['black', 'blue', 'red','yellow']);
       $scope.getcolor=chroma.getHeatColor;
       $scope.search_ranges = [
         {
@@ -39,7 +40,9 @@
       myLocation.long = '';
       myLocation.lat = '';
       myLocation.ip = '';
-
+    //   $scope.toggleMap = function() {
+    //       $mdSidenav('right').toggle();
+    //   };
 
       // loading data all|fav|pop|hot|cool
       var _LoadView = function(view){
@@ -333,7 +336,8 @@
 
       // authentication stuff
       $scope.$on('devise:login', function(event, currentUser) {
-          _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
+          // TODO toast not appearing
+          $mdToast.show($mdToast.simple().content('Logged In!')); _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
       });
 
       $scope.$on('devise:new-session', function(event, currentUser) {

@@ -4,7 +4,11 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+	if params[:userlocation].present?
+		@locations = Location.near(params[:userlocation], params[:distance] || 10, order: :distance)
+    else
+    	@locations = Location.all
+	end
     respond_to do |format|
      	format.html # index.html
     	format.json { render json: @locations, each_serializer: LocationSerializer }
