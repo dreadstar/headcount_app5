@@ -38,7 +38,7 @@
         <label type="button" title="Set Location" class="btn-sm btn-primary" ng-click="setLocation($event)">
           <span class="mdi-maps-my-location" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
-        <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="showMap= !showMap">
+        <label type="button" title="Show Map" class="btn-sm btn-primary" ng-click="toggleMap()">
           <span class="mdi-social-public" style="font-size: 1em;padding: 0px;margin:0px;"></span>
         </label>
       </div>
@@ -50,7 +50,7 @@
     <div layout="row">
       <div flex>
         <a href="/#">index </a>
-        <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges">
+        <select ng-model="myRange" ng-options="search_range.txt for search_range in search_ranges" ng-change="rangeChange()">
           <option value="">-- choose range --</option>
         </select>
       </div>

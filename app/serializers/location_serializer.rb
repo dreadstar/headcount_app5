@@ -23,7 +23,7 @@ class LocationSerializer < ActiveModel::Serializer
   end
 
 
-  attributes :id, :name, :max_cap, :current_state, :yelp_url, :site_url, :fanscnt, :address, :city,:state,:postal_code, :country
+  attributes :id, :name, :max_cap, :current_state, :yelp_url, :site_url, :fanscnt, :address, :city,:state,:postal_code, :country, :longitude, :latitude
   # has_many :userlocationfavs, embed: :ids
   # has_many :doors
   # has_many :user_location_favs

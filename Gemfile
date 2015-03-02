@@ -65,6 +65,7 @@ gem 'yaml_db'
 # gem 'geokit-rails' might not be needed
 gem 'lodash-rails'
 gem 'geocoder'
+gem 'gmaps4rails'
 gem 'angular_rails_csrf'
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular-devise'

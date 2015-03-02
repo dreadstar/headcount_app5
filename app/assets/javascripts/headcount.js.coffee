@@ -7,6 +7,7 @@
 #= require angular-animate
 #= require angular-material/angular-material
 #= require angular-devise/devise
+#= require gmaps/google
 
 #= require angular-socket-io
 #= require angular-socket-io/socket
@@ -27,6 +28,10 @@ angular.module('lodash', [])
   .factory('lodash', ['$window', ($window)->
     return $window._
   ])
+angular.module('Gmaps', [])
+    .factory('Gmaps', ['$window', ($window)->
+        return $window.Gmaps
+    ])
 angular.module('chroma', [])
   .factory('chroma', ['$window', ($window)->
     _chroma=$window.chroma
@@ -54,7 +59,8 @@ angular.module('chroma', [])
 'ngAnimate',
 'lodash',
 'Devise',
-'chroma'])
+'chroma',
+'Gmaps'])
 
 
 

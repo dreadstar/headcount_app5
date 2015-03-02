@@ -1,8 +1,8 @@
 (function() {
 
   this.headcount.controller('LocationIndexCtrl', [
-    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$mdDialog', 'lodash','Auth','$q','chroma','Locations','$mdSidenav','$mdToast',
-    function($scope, $location, socket, UserFavorite,LocationAlert, $mdDialog,_ ,Auth,$q,chroma,Locations, $mdSidenav,$mdToast) {
+    '$scope', '$location',  'socket', 'UserFavorite','LocationAlert', '$mdDialog', 'lodash','Auth','$q','chroma','Gmaps','Locations','$mdSidenav','$mdToast',
+    function($scope, $location, socket, UserFavorite,LocationAlert, $mdDialog,_ ,Auth,$q,chroma,Gmaps,Locations, $mdSidenav,$mdToast) {
 
       var favorites=[];
       var locationAlerts=[];
@@ -44,9 +44,19 @@
       myLocation.long = '';
       myLocation.lat = '';
       myLocation.ip = '';
-    //   $scope.toggleMap = function() {
-    //       $mdSidenav('right').toggle();
-    //   };
+      $scope.toggleMap = function() {
+          console.log('toggleMap',$scope.showMap);
+          $scope.showMap= !$scope.showMap;
+          $scope.$apply();
+           _updateMap();
+
+      };
+      $scope.rangeChange = function() {
+          console.log('rangeChange',$scope.showMap,myLocation);
+          if(myLocation.address||( myLocation.long&& myLocation.lat)){
+              $scope.LoadView($scope.view);
+          }
+      };
 
       // loading data all|fav|pop|hot|cool
       var _LoadView = function(view){
@@ -160,11 +170,47 @@
           return deferred.promise;
       };
 
-      //initial load all default
-      _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
+      var _updateMap= function(){
+          console.log('_updateMap start');
+          var deferred = $q.defer();
 
+          if($scope.showMap){
+              var handler = Gmaps.build('Google');
+                handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                    var locMarkers=[];
+                  _.forEach($scope.locs,function(loc) {
+                      if(loc.longitude !=='' && loc.longitude !== null){
+                          locMarkers.push({
+                              "lat": loc.latitude,
+                              "lng": loc.longitude,
+                              "picture": {
+                                "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+                                "width":  36,
+                                "height": 36
+                              },
+                              "infowindow": loc.name
+                          });
+                      }
+                  });
+                  console.log('locMarkers',locMarkers);
+                  var markers = handler.addMarkers(locMarkers);
+                  handler.bounds.extendWith(markers);
+                  handler.fitMapToBounds();
+                  deferred.resolve(true);
+                });
+          }else{
+              deferred.resolve(false);
+          }
+
+          return deferred.promise;
+      };
+
+      //
+      //initial load all default
+      _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts).then(_updateMap);
+      //
       $scope.LoadView = function(view){
-        _LoadView(view).then(_checkAuth).then(_loadFavorites).then(_updateAlerts);
+        _LoadView(view).then(_checkAuth).then(_loadFavorites).then(_updateAlerts).then(_updateMap);
       };
 
 
