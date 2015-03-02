@@ -47,7 +47,7 @@
       $scope.toggleMap = function() {
           console.log('toggleMap',$scope.showMap);
           $scope.showMap= !$scope.showMap;
-          $scope.$apply();
+
            _updateMap();
 
       };
@@ -207,7 +207,8 @@
 
       //
       //initial load all default
-      _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts).then(_updateMap);
+      _LoadView().then(_checkAuth).then(_loadFavorites).then(_loadAlerts);
+    //   .then(_updateMap);
       //
       $scope.LoadView = function(view){
         _LoadView(view).then(_checkAuth).then(_loadFavorites).then(_updateAlerts).then(_updateMap);
